@@ -1,0 +1,27 @@
+xcassets:
+  inputs:
+    - WalletApp/Resource/Images.xcassets
+    - WalletApp/Resource/Colors.xcassets
+  outputs:
+    - templateName: swift5
+      output: WalletApp/Generated/Asset.swift
+      params:
+        publicAccess: 1
+    
+strings:
+  inputs: WalletApp/Resource/ja.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: WalletApp/Generated/Strings.swift
+
+ib:
+  inputs:
+    - WalletApp/UserInterface
+  outputs:
+    - templateName: scenes-swift5
+      output: WalletApp/Generated/StoryboardScenes.swift
+      params:
+        ignoreTargetModule: true
+    - templateName: segues-swift5
+      output: WalletApp/Generated/StoryboardSegues.swift
+
