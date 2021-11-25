@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
 
 class WalletViewController: UIViewController {
     
@@ -15,10 +18,25 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var balanceView: UIView!
     @IBOutlet weak var balanceSlideView: UIView!
     @IBOutlet weak var balanceRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableView: UITableView!
+    
+    private var viewModel: WalletViewModel!
+    private let disposeBag = DisposeBag()
+    
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionWallet>(configureCell: configureCell)
+    
+    private lazy var configureCell: RxTableViewSectionedReloadDataSource<SectionWallet>.ConfigureCell = { [weak self] (dataSouce, tableView, indexPath, item) in
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewPath.wallet.cell, for: indexPath) as! WalletTableViewCell
+        
+        return cell
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configView()
+        configTableView()
+        configViewModel()
+        bind()
     }
     
     override func viewWillLayoutSubviews() {
@@ -39,4 +57,36 @@ class WalletViewController: UIViewController {
         balanceSlideView.layer.cornerRadius = 10.0
     }
     
+    private func configTableView() {
+        let nib = UINib(nibName: CustomViewPath.wallet.view, bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: CustomViewPath.wallet.cell)
+        tableView.tableFooterView = UIView(frame: .zero) // 空白cellの線　削除
+        tableView.separatorStyle = .none
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+    }
+    
+    private func configViewModel() {
+        viewModel = WalletViewModel()
+        // output
+        
+        // wallet items
+        viewModel.output().walletItems
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+    }
+    
+    private func bind() {
+        tableView.rx.itemSelected
+            .bind(to: Binder(self) { me, indexPath in
+                me.tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+}
+
+extension WalletViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90.0
+    }
 }

@@ -14,6 +14,7 @@
                 <outlet property="balanceRightConstraint" destination="OVS-br-fxt" id="wjT-hK-aQN"/>
                 <outlet property="balanceSlideView" destination="t08-a9-xmA" id="9J7-id-CbZ"/>
                 <outlet property="balanceView" destination="NE9-1F-ox2" id="ZMy-7d-cEb"/>
+                <outlet property="tableView" destination="m42-X4-u0l" id="cYM-9w-kPm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="walletCornerBottomView" destination="gWT-u0-WEK" id="eMQ-g7-cE1"/>
                 <outlet property="walletCornerTopView" destination="xhp-Wt-dBV" id="hEZ-fM-3fN"/>
@@ -93,12 +94,20 @@
                         <constraint firstItem="YUA-ZC-Gnh" firstAttribute="top" secondItem="ixJ-l8-5zD" secondAttribute="bottom" constant="24" id="tvs-Df-KhT"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m42-X4-u0l">
+                    <rect key="frame" x="0.0" y="256" width="375" height="411"/>
+                    <color key="backgroundColor" name="backgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="backgroundColor"/>
             <constraints>
                 <constraint firstItem="OsA-48-58c" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="D08-Zm-sx2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m42-X4-u0l" secondAttribute="trailing" id="DaQ-gq-iSR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="m42-X4-u0l" secondAttribute="bottom" id="HYP-qe-lQP"/>
                 <constraint firstItem="OsA-48-58c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="lYj-Em-MHD"/>
+                <constraint firstItem="m42-X4-u0l" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rAN-1y-Cz0"/>
+                <constraint firstItem="m42-X4-u0l" firstAttribute="top" secondItem="OsA-48-58c" secondAttribute="bottom" constant="24" id="rjf-ZX-GTN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OsA-48-58c" secondAttribute="trailing" constant="20" id="ydg-6v-XiX"/>
             </constraints>
             <point key="canvasLocation" x="96.799999999999997" y="108.39580209895054"/>
