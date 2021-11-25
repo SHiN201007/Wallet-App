@@ -23,6 +23,16 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 public enum Asset {
   public enum Colors {
     public static let backgroundColor = ColorAsset(name: "backgroundColor")
+    public static let blackColor = ColorAsset(name: "blackColor")
+    public static let blueBottomColor = ColorAsset(name: "blueBottomColor")
+    public static let blueTopColor = ColorAsset(name: "blueTopColor")
+    public static let greenBottomColor = ColorAsset(name: "greenBottomColor")
+    public static let greenTopColor = ColorAsset(name: "greenTopColor")
+    public static let navyColor = ColorAsset(name: "navyColor")
+    public static let purpleBottomColor = ColorAsset(name: "purpleBottomColor")
+    public static let purpleTopColor = ColorAsset(name: "purpleTopColor")
+    public static let redBottomColor = ColorAsset(name: "redBottomColor")
+    public static let redTopColor = ColorAsset(name: "redTopColor")
   }
   public enum Images {
     public static let entertainment = ImageAsset(name: "entertainment")
