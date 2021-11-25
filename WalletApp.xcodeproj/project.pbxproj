@@ -36,6 +36,11 @@
 		06A5E3AF274F1C2900F9B31C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3AB274F1C2800F9B31C /* Strings.swift */; };
 		06A5E3B0274F1C2900F9B31C /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3AC274F1C2900F9B31C /* Asset.swift */; };
 		06A5E3B1274F1C2900F9B31C /* StoryboardScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3AD274F1C2900F9B31C /* StoryboardScenes.swift */; };
+		06A5E3B4274F24A300F9B31C /* TabbarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3B3274F24A300F9B31C /* TabbarUtil.swift */; };
+		06A5E3B7274F2A0F00F9B31C /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3B5274F2A0F00F9B31C /* PaymentViewController.swift */; };
+		06A5E3B8274F2A0F00F9B31C /* PaymentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A5E3B6274F2A0F00F9B31C /* PaymentViewController.xib */; };
+		06A5E3BC274F2A2000F9B31C /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3BA274F2A2000F9B31C /* MypageViewController.swift */; };
+		06A5E3BD274F2A2000F9B31C /* MypageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06A5E3BB274F2A2000F9B31C /* MypageViewController.xib */; };
 		2367B330B83681DF1B6DE597 /* Pods_WalletApp_WalletAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED33ED954CE75260BA1F453 /* Pods_WalletApp_WalletAppUITests.framework */; };
 		24A73928F01BEE10929DCC10 /* Pods_WalletAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +85,11 @@
 		06A5E3AB274F1C2800F9B31C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		06A5E3AC274F1C2900F9B31C /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		06A5E3AD274F1C2900F9B31C /* StoryboardScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardScenes.swift; sourceTree = "<group>"; };
+		06A5E3B3274F24A300F9B31C /* TabbarUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarUtil.swift; sourceTree = "<group>"; };
+		06A5E3B5274F2A0F00F9B31C /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		06A5E3B6274F2A0F00F9B31C /* PaymentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentViewController.xib; sourceTree = "<group>"; };
+		06A5E3BA274F2A2000F9B31C /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		06A5E3BB274F2A2000F9B31C /* MypageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MypageViewController.xib; sourceTree = "<group>"; };
 		197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B783BEF5A5C00539647A9A1 /* Pods-WalletAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WalletAppTests/Pods-WalletAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F106ABEB6DF41A0CE1B9318 /* Pods-WalletApp-WalletAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletApp-WalletAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WalletApp-WalletAppUITests/Pods-WalletApp-WalletAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +157,7 @@
 				06A5E365274F014200F9B31C /* SceneDelegate.swift */,
 				06A5E39E274F144100F9B31C /* Generated */,
 				06A5E398274F06A300F9B31C /* Resource */,
+				06A5E3B2274F248D00F9B31C /* Utils */,
 				06A5E393274F066B00F9B31C /* UserInterface */,
 				06A5E36E274F014300F9B31C /* LaunchScreen.storyboard */,
 				06A5E371274F014300F9B31C /* Info.plist */,
@@ -176,6 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				06A5E399274F073700F9B31C /* Wallet */,
+				06A5E3B9274F2A1400F9B31C /* Payment */,
+				06A5E3BE274F2A2400F9B31C /* Mypage */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -208,6 +221,32 @@
 				06A5E3AB274F1C2800F9B31C /* Strings.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		06A5E3B2274F248D00F9B31C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				06A5E3B3274F24A300F9B31C /* TabbarUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		06A5E3B9274F2A1400F9B31C /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				06A5E3B5274F2A0F00F9B31C /* PaymentViewController.swift */,
+				06A5E3B6274F2A0F00F9B31C /* PaymentViewController.xib */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		06A5E3BE274F2A2400F9B31C /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				06A5E3BA274F2A2000F9B31C /* MypageViewController.swift */,
+				06A5E3BB274F2A2000F9B31C /* MypageViewController.xib */,
+			);
+			path = Mypage;
 			sourceTree = "<group>";
 		};
 		6CCC20D338DB6B77D6B6C3F3 /* Pods */ = {
@@ -347,10 +386,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				06A5E3A2274F1B8700F9B31C /* Localizable.strings in Resources */,
+				06A5E3BD274F2A2000F9B31C /* MypageViewController.xib in Resources */,
 				06A5E370274F014300F9B31C /* LaunchScreen.storyboard in Resources */,
 				06A5E39D274F141300F9B31C /* Colors.xcassets in Resources */,
 				06A5E39B274F13D100F9B31C /* Images.xcassets in Resources */,
 				06A5E397274F068900F9B31C /* WalletViewController.xib in Resources */,
+				06A5E3B8274F2A0F00F9B31C /* PaymentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +543,10 @@
 				06A5E366274F014200F9B31C /* SceneDelegate.swift in Sources */,
 				06A5E3B1274F1C2900F9B31C /* StoryboardScenes.swift in Sources */,
 				06A5E3AF274F1C2900F9B31C /* Strings.swift in Sources */,
+				06A5E3BC274F2A2000F9B31C /* MypageViewController.swift in Sources */,
+				06A5E3B4274F24A300F9B31C /* TabbarUtil.swift in Sources */,
 				06A5E3AE274F1C2900F9B31C /* StoryboardSegues.swift in Sources */,
+				06A5E3B7274F2A0F00F9B31C /* PaymentViewController.swift in Sources */,
 				06A5E396274F068900F9B31C /* WalletViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

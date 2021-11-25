@@ -25,7 +25,15 @@ public enum Asset {
     public static let backgroundColor = ColorAsset(name: "backgroundColor")
   }
   public enum Images {
-    public static let image = ImageAsset(name: "Image")
+    public static let entertainment = ImageAsset(name: "entertainment")
+    public static let food = ImageAsset(name: "food")
+    public static let life = ImageAsset(name: "life")
+    public static let mypage = ImageAsset(name: "mypage")
+    public static let other = ImageAsset(name: "other")
+    public static let payment = ImageAsset(name: "payment")
+    public static let study = ImageAsset(name: "study")
+    public static let train = ImageAsset(name: "train")
+    public static let wallet = ImageAsset(name: "wallet")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

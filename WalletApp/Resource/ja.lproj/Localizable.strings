@@ -6,4 +6,7 @@
   
 */
 
-"test" = "テスト";
+//MARK: Page Titile
+"title_wallet" = "ウォレット";
+"title_payment" = "お支払い";
+"title_mypage" = "マイページ";

@@ -10,8 +10,12 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
-  /// テスト
-  internal static let test = L10n.tr("Localizable", "test")
+  /// マイページ
+  internal static let titleMypage = L10n.tr("Localizable", "title_mypage")
+  /// お支払い
+  internal static let titlePayment = L10n.tr("Localizable", "title_payment")
+  /// ウォレット
+  internal static let titleWallet = L10n.tr("Localizable", "title_wallet")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
