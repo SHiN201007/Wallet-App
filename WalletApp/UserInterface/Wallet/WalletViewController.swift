@@ -11,7 +11,7 @@ class WalletViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = L10n.test
     }
     
 }
