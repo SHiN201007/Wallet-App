@@ -10,3 +10,11 @@
 "title_wallet" = "ウォレット";
 "title_payment" = "お支払い";
 "title_mypage" = "マイページ";
+
+// MARK: WalletType Name
+"walletTypeName_food" = "食費";
+"walletTypeName_life" = "生活費";
+"walletTypeName_entertainment" = "交際費";
+"walletTypeName_study" = "教育費";
+"walletTypeName_train" = "交通費";
+"walletTypeName_other" = "雑費";

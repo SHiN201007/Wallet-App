@@ -47,17 +47,17 @@ enum WalletType {
         case .all:
             return nil
         case .food:
-            return "食費"
+            return L10n.walletTypeNameFood
         case .life:
-            return "生活費"
+            return L10n.walletTypeNameLife
         case .entertainment:
-            return "交際費"
+            return L10n.walletTypeNameEntertainment
         case .study:
-            return "教育費"
+            return L10n.walletTypeNameStudy
         case .train:
-            return "交通費"
+            return L10n.walletTypeNameTrain
         case .other:
-            return "雑費"
+            return L10n.walletTypeNameOther
         }
     }
     

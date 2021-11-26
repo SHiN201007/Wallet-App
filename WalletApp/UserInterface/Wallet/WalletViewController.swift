@@ -51,6 +51,7 @@ class WalletViewController: UIViewController {
     }
     
     private func configView() {
+        title = L10n.titleWallet
         walletView.do { view in
             view.configGradientColor(width: self.view.bounds.width - 40, height: view.bounds.height, colors: .all)
             view.configShadow()
