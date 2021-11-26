@@ -16,6 +16,18 @@ internal enum L10n {
   internal static let titlePayment = L10n.tr("Localizable", "title_payment")
   /// ウォレット
   internal static let titleWallet = L10n.tr("Localizable", "title_wallet")
+  /// 交際費
+  internal static let walletTypeNameEntertainment = L10n.tr("Localizable", "walletTypeName_entertainment")
+  /// 食費
+  internal static let walletTypeNameFood = L10n.tr("Localizable", "walletTypeName_food")
+  /// 生活費
+  internal static let walletTypeNameLife = L10n.tr("Localizable", "walletTypeName_life")
+  /// 雑費
+  internal static let walletTypeNameOther = L10n.tr("Localizable", "walletTypeName_other")
+  /// 教育費
+  internal static let walletTypeNameStudy = L10n.tr("Localizable", "walletTypeName_study")
+  /// 交通費
+  internal static let walletTypeNameTrain = L10n.tr("Localizable", "walletTypeName_train")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
