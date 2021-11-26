@@ -11,6 +11,7 @@ import RxDataSources
 
 enum WalletType {
     case all
+    case setting
     case food
     case life
     case entertainment
@@ -26,6 +27,8 @@ enum WalletType {
     var image: UIImage? {
         switch self {
         case .all:
+            return nil
+        case .setting:
             return nil
         case .food:
             return Asset.Images.food.image
@@ -45,6 +48,8 @@ enum WalletType {
     var typeName: String? {
         switch self {
         case .all:
+            return nil
+        case .setting:
             return nil
         case .food:
             return L10n.walletTypeNameFood
@@ -67,6 +72,11 @@ enum WalletType {
             return GradientColors(
                 top: Asset.Colors.greenTopColor.color,
                 bottom: Asset.Colors.greenBottomColor.color
+            )
+        case .setting:
+            return GradientColors(
+                top: Asset.Colors.purpleTopColor.color,
+                bottom: Asset.Colors.purpleBottomColor.color
             )
         case .food:
             return GradientColors(
