@@ -54,12 +54,56 @@ class PaymentViewController: UIViewController {
     }
     
     private func configViewModel() {
-        let input = PaymentViewModel.Input()
+        let input = PaymentViewModel.Input(
+            priceText: priceTextField.rx.text.orEmpty.asObservable(),
+            foodButtonTapped: foodButton.rx.tap.asObservable(),
+            lifeButtonTapped: lifeButton.rx.tap.asObservable(),
+            entertainmentButtonTapped: entertainmentButton.rx.tap.asObservable(),
+            trainButtonTapped: trainButton.rx.tap.asObservable(),
+            studyButtonTapped: studyButton.rx.tap.asObservable(),
+            otherButtonTapped: otherButton.rx.tap.asObservable(),
+            doneButtonTapped: doneButton.rx.tap.asObservable()
+        )
         viewModel = PaymentViewModel(trigger: input)
     }
     
     private func bind() {
+        viewModel.output().price
+            .map { "¥\($0)" }
+            .bind(to: priceTextField.rx.text)
+            .disposed(by: disposeBag)
         
+        viewModel.output().typeImage
+            .bind(to: typeImageView.rx.image)
+            .disposed(by: disposeBag)
+        
+        viewModel.output().typeName
+            .bind(to: typeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.output().walletType
+            .bind(to: Binder(self) { me, type in
+                me.configGradient(type: type)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    
+    private func configGradient(type: WalletType) {
+        unConfigGradient()
+        if let count = doneButton.layer.sublayers?.count {
+            if count <= 1 {
+                doneButton.configGradientColor(width: self.view.bounds.width - 128, height: 60, colors: type)
+            }
+        }
+    }
+    
+    private func unConfigGradient() {
+        if let count = doneButton.layer.sublayers?.count {
+            if count > 1 {
+                doneButton.layer.sublayers?.removeFirst()
+            }
+        }
     }
 
 }
