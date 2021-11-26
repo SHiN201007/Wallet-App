@@ -39,9 +39,9 @@ extension UIView {
         layer.maskedCorners = corners
     }
     
-    func configGradientColor(width: CGFloat, height: CGFloat) {
-        let topColor = Asset.Colors.greenTopColor.color
-        let bottomColor = Asset.Colors.greenBottomColor.color
+    func configGradientColor(width: CGFloat, height: CGFloat, colors: WalletType) {
+        let topColor = colors.typeColor.top
+        let bottomColor = colors.typeColor.bottom
         let gradientLayer = CAGradientLayer()
         
         gradientLayer.frame = CGRect(

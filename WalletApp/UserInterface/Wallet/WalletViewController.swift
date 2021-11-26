@@ -29,6 +29,12 @@ class WalletViewController: UIViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomViewPath.wallet.cell, for: indexPath) as! WalletTableViewCell
         
+        // layout
+        if let width = self?.view.bounds.width {
+            cell.configView(width: width - 40, type: item.walletType)
+            cell.configType(type: item.walletType)
+        }
+        
         return cell
     }
     
@@ -46,7 +52,7 @@ class WalletViewController: UIViewController {
     
     private func configView() {
         walletView.do { view in
-            view.configGradientColor(width: self.view.bounds.width - 40, height: view.bounds.height)
+            view.configGradientColor(width: self.view.bounds.width - 40, height: view.bounds.height, colors: .all)
             view.configShadow()
             view.layer.cornerRadius = 10.0
         }
@@ -54,6 +60,7 @@ class WalletViewController: UIViewController {
         walletCornerBottomView.configCornerRadius(position: .bottom, value: 50)
         balanceView.configShadow()
         balanceView.layer.cornerRadius = 10.0
+        balanceView.backgroundColor = WalletType.all.typeColor.bottom
         balanceSlideView.layer.cornerRadius = 10.0
     }
     
