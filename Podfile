@@ -27,7 +27,11 @@ target 'WalletApp' do
   
   pod 'KRProgressHUD'
   pod 'IQKeyboardManager'
+  pod 'AlamofireImage'
   pod 'SwiftGen'
+  pod 'SnapKit'
+  pod 'SwiftDate'
+  pod 'HydraAsync'
 
   target 'WalletAppTests' do
     inherit! :search_paths
