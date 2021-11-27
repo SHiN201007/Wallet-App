@@ -9,11 +9,14 @@ import Foundation
 
 enum CustomViewPath {
     case wallet
+    case member
     
     var view: String {
         switch self {
         case .wallet:
             return "WalletTableViewCell"
+        case .member:
+            return "MemberTableViewCell"
         }
     }
     
@@ -21,6 +24,8 @@ enum CustomViewPath {
         switch self {
         case .wallet:
             return "WalletCell"
+        case .member:
+            return "MemberCell"
         }
     }
 }

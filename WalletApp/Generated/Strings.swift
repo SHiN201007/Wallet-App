@@ -10,10 +10,14 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// タップでメンバーを招待しよう！
+  internal static let memberPlaceHolder = L10n.tr("Localizable", "member_placeHolder")
   /// マイページ
   internal static let titleMypage = L10n.tr("Localizable", "title_mypage")
   /// お支払い
   internal static let titlePayment = L10n.tr("Localizable", "title_payment")
+  /// 設定
+  internal static let titleSetting = L10n.tr("Localizable", "title_setting")
   /// ウォレット
   internal static let titleWallet = L10n.tr("Localizable", "title_wallet")
   /// 交際費
