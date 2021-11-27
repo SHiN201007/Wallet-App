@@ -11,7 +11,11 @@ class SettingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configView()
+    }
+    
+    private func configView() {
+        title = L10n.titleSetting
     }
 
 }

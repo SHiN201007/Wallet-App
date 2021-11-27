@@ -14,6 +14,7 @@
                 <outlet property="settingCornerBottomView" destination="TvN-ga-RXa" id="ZeA-mb-h5a"/>
                 <outlet property="settingCornerTopView" destination="tx8-BT-pVn" id="YZA-QW-Qof"/>
                 <outlet property="settingView" destination="l93-fn-tZO" id="Jvd-11-ATK"/>
+                <outlet property="tableView" destination="GrM-iC-Fo8" id="aeK-I6-aIS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -76,12 +77,36 @@
                         <constraint firstAttribute="bottom" secondItem="FiB-Di-L3v" secondAttribute="bottom" id="x9b-fE-4T5"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メンバー" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMO-7q-hfe">
+                    <rect key="frame" x="20" y="264" width="70" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="共有するメンバーを招待しましょう" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxh-W4-xEc">
+                    <rect key="frame" x="20" y="301" width="197" height="15"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GrM-iC-Fo8">
+                    <rect key="frame" x="0.0" y="332" width="375" height="335"/>
+                    <color key="backgroundColor" name="backgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="backgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="l93-fn-tZO" secondAttribute="trailing" constant="20" id="7Hr-qk-ndW"/>
+                <constraint firstItem="GrM-iC-Fo8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="7Wy-w8-X8d"/>
+                <constraint firstItem="zxh-W4-xEc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="9Kz-qk-NTl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="GrM-iC-Fo8" secondAttribute="bottom" id="Bah-dp-Hx2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GrM-iC-Fo8" secondAttribute="trailing" id="Co6-Px-Tsq"/>
+                <constraint firstItem="zxh-W4-xEc" firstAttribute="top" secondItem="BMO-7q-hfe" secondAttribute="bottom" constant="16" id="OHj-oe-djF"/>
+                <constraint firstItem="BMO-7q-hfe" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="RUz-r2-TXX"/>
                 <constraint firstItem="l93-fn-tZO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="SbY-JK-vVU"/>
+                <constraint firstItem="GrM-iC-Fo8" firstAttribute="top" secondItem="zxh-W4-xEc" secondAttribute="bottom" constant="16" id="ZbH-qB-1Ed"/>
+                <constraint firstItem="BMO-7q-hfe" firstAttribute="top" secondItem="l93-fn-tZO" secondAttribute="bottom" constant="32" id="mFC-KH-Kdh"/>
                 <constraint firstItem="l93-fn-tZO" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="nnD-Ko-xss"/>
             </constraints>
             <point key="canvasLocation" x="138.40000000000001" y="91.304347826086968"/>
