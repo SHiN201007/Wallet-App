@@ -58,3 +58,15 @@ extension UIView {
     }
     
 }
+
+extension Int {
+    func numberForComma() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = NumberFormatter.Style.decimal
+        formatter.groupingSeparator = ","
+        formatter.groupingSize = 3
+        
+        let result = formatter.string(from: NSNumber(value: self))
+        return result!
+    }
+}
