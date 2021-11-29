@@ -14,6 +14,7 @@ class SettingViewModel {
     private let disposeBag = DisposeBag()
     
     struct Input {
+        var settingType: BehaviorRelay<SettingViewController.SettingType>
         var foodText: Observable<String>
         var lifeText: Observable<String>
         var entertainmentText: Observable<String>
@@ -30,6 +31,7 @@ class SettingViewModel {
         var studyPrice: Observable<Int>
         var trainPrice: Observable<Int>
         var otherPrice: Observable<Int>
+        var isNextPage: Observable<SettingViewController.SettingType>
     }
     
     // parameter
@@ -42,6 +44,7 @@ class SettingViewModel {
     private let studyPriceRelay = BehaviorRelay<Int>(value: 0)
     private let trainPriceRelay = BehaviorRelay<Int>(value: 0)
     private let otherPriceRelay = BehaviorRelay<Int>(value: 0)
+    private let isNextPageSubject = PublishSubject<SettingViewController.SettingType>()
     
     init(trigger: Input) {
         _input = trigger
@@ -51,7 +54,8 @@ class SettingViewModel {
             entertainmentPrice: entertainmentPriceRelay.asObservable(),
             studyPrice: studyPriceRelay.asObservable(),
             trainPrice: trainPriceRelay.asObservable(),
-            otherPrice: otherPriceRelay.asObservable()
+            otherPrice: otherPriceRelay.asObservable(),
+            isNextPage: isNextPageSubject.asObservable()
         )
         
         bind()
@@ -95,8 +99,9 @@ class SettingViewModel {
             .disposed(by: disposeBag)
         
         _input.doneButtonTapped
-            .bind(to: Binder(self) { me, _ in
-                print("food", me.foodPriceRelay.value)
+            .map { self._input.settingType.value }
+            .bind(to: Binder(self) { me, type in
+                type == .regist ? me.registSetting() : me.updateSetting()
             })
             .disposed(by: disposeBag)
     }
@@ -105,6 +110,14 @@ class SettingViewModel {
         let index = priceText.count <= 0 ? priceText.count : priceText.count - 1
         let price = priceText.suffix(index)
         return Int(price)
+    }
+    
+    private func registSetting() {
+        isNextPageSubject.onNext(_input.settingType.value)
+    }
+    
+    private func updateSetting() {
+        
     }
     
     // MARK: -- OUTPUT

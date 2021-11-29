@@ -54,7 +54,9 @@ class StartViewController: UIViewController {
         viewModel.output().isNextPage
             .filter { $0 == true }
             .bind(to: Binder(self) { me, _ in
-                me.dismiss(animated: true, completion: nil)
+                let settingVC = SettingViewController()
+                settingVC.settingTypeRelay.accept(.regist)
+                me.navigationController?.pushViewController(settingVC, animated: true)
             })
             .disposed(by: disposeBag)
     }

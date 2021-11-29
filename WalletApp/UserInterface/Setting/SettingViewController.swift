@@ -11,6 +11,13 @@ import RxCocoa
 
 class SettingViewController: UIViewController {
     
+    enum SettingType {
+        case regist
+        case update
+    }
+    
+    var settingTypeRelay = BehaviorRelay<SettingType>(value: .update)
+    
     @IBOutlet var walletViews: [UIView]!
     @IBOutlet var typeViews: [UIView]!
     @IBOutlet var typeImageViews: [UIImageView]!
@@ -40,7 +47,7 @@ class SettingViewController: UIViewController {
     }
     
     private func configView() {
-        title = L10n.titleSetting
+        settingTypeRelay.value == .regist ? configRegistView() : configUpdateView()
         doneButton = createDoneButton()
         navigationItem.rightBarButtonItem = doneButton
     }
@@ -52,6 +59,15 @@ class SettingViewController: UIViewController {
             target: self,
             action: nil
         )
+    }
+    
+    private func configRegistView() {
+        title = "１ヶ月の限度額を設定しよう"
+        navigationItem.hidesBackButton = true
+    }
+    
+    private func configUpdateView() {
+        title = L10n.titleSetting
     }
     
     private func configWalletViews() {
@@ -74,6 +90,7 @@ class SettingViewController: UIViewController {
     
     private func configViewModel() {
         let input = SettingViewModel.Input(
+            settingType: settingTypeRelay,
             foodText: foodTextField.rx.text.orEmpty.asObservable(),
             lifeText: lifeTextField.rx.text.orEmpty.asObservable(),
             entertainmentText: entertainmentTextField.rx.text.orEmpty.asObservable(),
@@ -114,6 +131,13 @@ class SettingViewController: UIViewController {
         viewModel.output().otherPrice
             .map { "¥\($0)" }
             .bind(to: otherTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.output().isNextPage
+            .filter { $0 == .regist }
+            .bind(to: Binder(self) { me, type in
+                self.dismiss(animated: true, completion: nil)
+            })
             .disposed(by: disposeBag)
     }
 
