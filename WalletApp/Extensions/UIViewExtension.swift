@@ -70,3 +70,12 @@ extension Int {
         return result!
     }
 }
+
+extension String {
+    func convertPrice() -> Int? {
+        var modifiedPriceText = self
+        let deleteKeys: Set<Character> = ["¥", ","]
+        modifiedPriceText.removeAll(where: { deleteKeys.contains($0) })
+        return Int(modifiedPriceText)
+    }
+}

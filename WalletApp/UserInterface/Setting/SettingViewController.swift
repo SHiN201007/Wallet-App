@@ -104,32 +104,38 @@ class SettingViewController: UIViewController {
     
     private func bind() {
         viewModel.output().foodPrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: foodTextField.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.output().lifePrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: lifeTextField.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.output().entertainmentPrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: entertainmentTextField.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.output().studyPrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: studyTextField.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.output().trainPrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: trainTextField.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.output().otherPrice
-            .map { "¥\($0)" }
+            .unwrap()
+            .map { "¥\($0.numberForComma())" }
             .bind(to: otherTextField.rx.text)
             .disposed(by: disposeBag)
         

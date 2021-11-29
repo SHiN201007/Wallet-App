@@ -28,12 +28,12 @@ class SettingViewModel {
     }
 
     struct Output {
-        var foodPrice: Observable<Int>
-        var lifePrice: Observable<Int>
-        var entertainmentPrice: Observable<Int>
-        var studyPrice: Observable<Int>
-        var trainPrice: Observable<Int>
-        var otherPrice: Observable<Int>
+        var foodPrice: Observable<Int?>
+        var lifePrice: Observable<Int?>
+        var entertainmentPrice: Observable<Int?>
+        var studyPrice: Observable<Int?>
+        var trainPrice: Observable<Int?>
+        var otherPrice: Observable<Int?>
         var isNextPage: Observable<SettingViewController.SettingType>
     }
     
@@ -41,12 +41,12 @@ class SettingViewModel {
     private var _input: Input!
     private var _output: Output!
     
-    private let foodPriceRelay = BehaviorRelay<Int>(value: 0)
-    private let lifePriceRelay = BehaviorRelay<Int>(value: 0)
-    private let entertainmentPriceRelay = BehaviorRelay<Int>(value: 0)
-    private let studyPriceRelay = BehaviorRelay<Int>(value: 0)
-    private let trainPriceRelay = BehaviorRelay<Int>(value: 0)
-    private let otherPriceRelay = BehaviorRelay<Int>(value: 0)
+    private let foodPriceRelay = BehaviorRelay<Int?>(value: nil)
+    private let lifePriceRelay = BehaviorRelay<Int?>(value: nil)
+    private let entertainmentPriceRelay = BehaviorRelay<Int?>(value: nil)
+    private let studyPriceRelay = BehaviorRelay<Int?>(value: nil)
+    private let trainPriceRelay = BehaviorRelay<Int?>(value: nil)
+    private let otherPriceRelay = BehaviorRelay<Int?>(value: nil)
     private let isNextPageSubject = PublishSubject<SettingViewController.SettingType>()
     
     init(trigger: Input) {
@@ -66,37 +66,37 @@ class SettingViewModel {
     
     private func bind() {
         _input.foodText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: foodPriceRelay)
             .disposed(by: disposeBag)
         
         _input.lifeText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: lifePriceRelay)
             .disposed(by: disposeBag)
         
         _input.entertainmentText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: entertainmentPriceRelay)
             .disposed(by: disposeBag)
         
         _input.studyText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: studyPriceRelay)
             .disposed(by: disposeBag)
         
         _input.trainText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: trainPriceRelay)
             .disposed(by: disposeBag)
         
         _input.otherText
-            .map { self.convertPrice(priceText: $0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: otherPriceRelay)
             .disposed(by: disposeBag)
@@ -109,20 +109,14 @@ class SettingViewModel {
             .disposed(by: disposeBag)
     }
     
-    private func convertPrice(priceText: String) -> Int? {
-        let index = priceText.count <= 0 ? priceText.count : priceText.count - 1
-        let price = priceText.suffix(index)
-        return Int(price)
-    }
-    
     private func configUpperItem() -> SettingModel.UpperItem {
         return SettingModel.UpperItem(
-            foodPrice: foodPriceRelay.value,
-            lifePrice: lifePriceRelay.value,
-            entertainmentPrice: entertainmentPriceRelay.value,
-            studyPrice: studyPriceRelay.value,
-            trainPrice: trainPriceRelay.value,
-            otherPrice: otherPriceRelay.value
+            foodPrice: foodPriceRelay.value ?? 0,
+            lifePrice: lifePriceRelay.value ?? 0,
+            entertainmentPrice: entertainmentPriceRelay.value ?? 0,
+            studyPrice: studyPriceRelay.value ?? 0,
+            trainPrice: trainPriceRelay.value ?? 0,
+            otherPrice: otherPriceRelay.value ?? 0
         )
     }
     
