@@ -58,6 +58,11 @@
 		06A5E3E92752157300F9B31C /* MemberItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3E82752157300F9B31C /* MemberItem.swift */; };
 		06A5E3EB2752158500F9B31C /* MemberModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3EA2752158500F9B31C /* MemberModel.swift */; };
 		06A5E3F92753220E00F9B31C /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3F82753220E00F9B31C /* SettingViewModel.swift */; };
+		06A5E3FB27548F6B00F9B31C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A5E3FA27548F6B00F9B31C /* BaseViewController.swift */; };
+		06AFD202275491E8000E93A2 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD200275491E8000E93A2 /* StartViewController.swift */; };
+		06AFD203275491E8000E93A2 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AFD201275491E8000E93A2 /* StartViewController.xib */; };
+		06AFD20527549249000E93A2 /* WalletNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */; };
+		06AFD2082754990E000E93A2 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2072754990E000E93A2 /* StartViewModel.swift */; };
 		2367B330B83681DF1B6DE597 /* Pods_WalletApp_WalletAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED33ED954CE75260BA1F453 /* Pods_WalletApp_WalletAppUITests.framework */; };
 		24A73928F01BEE10929DCC10 /* Pods_WalletAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -124,6 +129,11 @@
 		06A5E3E82752157300F9B31C /* MemberItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberItem.swift; sourceTree = "<group>"; };
 		06A5E3EA2752158500F9B31C /* MemberModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberModel.swift; sourceTree = "<group>"; };
 		06A5E3F82753220E00F9B31C /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		06A5E3FA27548F6B00F9B31C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		06AFD200275491E8000E93A2 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		06AFD201275491E8000E93A2 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNavigationViewController.swift; sourceTree = "<group>"; };
+		06AFD2072754990E000E93A2 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B783BEF5A5C00539647A9A1 /* Pods-WalletAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WalletAppTests/Pods-WalletAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F106ABEB6DF41A0CE1B9318 /* Pods-WalletApp-WalletAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletApp-WalletAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WalletApp-WalletAppUITests/Pods-WalletApp-WalletAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -223,6 +233,8 @@
 		06A5E393274F066B00F9B31C /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				06A5E3FA27548F6B00F9B31C /* BaseViewController.swift */,
+				06AFD1FF275491CA000E93A2 /* Start */,
 				06A5E399274F073700F9B31C /* Wallet */,
 				06A5E3B9274F2A1400F9B31C /* Payment */,
 				06A5E3BE274F2A2400F9B31C /* Mypage */,
@@ -303,6 +315,7 @@
 		06A5E3C4274F987300F9B31C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				06AFD20627549526000E93A2 /* NavigationController */,
 				06A5E3C5274F988000F9B31C /* Wallet */,
 				06A5E3E22752152000F9B31C /* Member */,
 			);
@@ -362,6 +375,24 @@
 				06A5E3E82752157300F9B31C /* MemberItem.swift */,
 			);
 			path = Member;
+			sourceTree = "<group>";
+		};
+		06AFD1FF275491CA000E93A2 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				06AFD200275491E8000E93A2 /* StartViewController.swift */,
+				06AFD201275491E8000E93A2 /* StartViewController.xib */,
+				06AFD2072754990E000E93A2 /* StartViewModel.swift */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		06AFD20627549526000E93A2 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */,
+			);
+			path = NavigationController;
 			sourceTree = "<group>";
 		};
 		6CCC20D338DB6B77D6B6C3F3 /* Pods */ = {
@@ -506,6 +537,7 @@
 				06A5E370274F014300F9B31C /* LaunchScreen.storyboard in Resources */,
 				06A5E39D274F141300F9B31C /* Colors.xcassets in Resources */,
 				06A5E3C9274F989B00F9B31C /* WalletTableViewCell.xib in Resources */,
+				06AFD203275491E8000E93A2 /* StartViewController.xib in Resources */,
 				06A5E39B274F13D100F9B31C /* Images.xcassets in Resources */,
 				06A5E397274F068900F9B31C /* WalletViewController.xib in Resources */,
 				06A5E3B8274F2A0F00F9B31C /* PaymentViewController.xib in Resources */,
@@ -676,6 +708,10 @@
 				06A5E3EB2752158500F9B31C /* MemberModel.swift in Sources */,
 				06A5E3C8274F989B00F9B31C /* WalletTableViewCell.swift in Sources */,
 				06A5E3F92753220E00F9B31C /* SettingViewModel.swift in Sources */,
+				06AFD20527549249000E93A2 /* WalletNavigationViewController.swift in Sources */,
+				06AFD2082754990E000E93A2 /* StartViewModel.swift in Sources */,
+				06A5E3FB27548F6B00F9B31C /* BaseViewController.swift in Sources */,
+				06AFD202275491E8000E93A2 /* StartViewController.swift in Sources */,
 				06A5E3E92752157300F9B31C /* MemberItem.swift in Sources */,
 				06A5E3AE274F1C2900F9B31C /* StoryboardSegues.swift in Sources */,
 				06A5E3B7274F2A0F00F9B31C /* PaymentViewController.swift in Sources */,
