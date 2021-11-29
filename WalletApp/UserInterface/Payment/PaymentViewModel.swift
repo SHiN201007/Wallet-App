@@ -58,7 +58,7 @@ class PaymentViewModel {
     
     private func bind() {
         _input.priceText
-            .map { Int($0) }
+            .map { $0.convertPrice() }
             .unwrap()
             .bind(to: priceSubject)
             .disposed(by: disposeBag)

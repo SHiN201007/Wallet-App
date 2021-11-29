@@ -30,9 +30,13 @@ class PaymentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configView()
         configViewModel()
         bind()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        configView()
     }
     
     private func configView() {
