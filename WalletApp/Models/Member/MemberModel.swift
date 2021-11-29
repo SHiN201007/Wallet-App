@@ -39,7 +39,7 @@ class MemberModel {
     
     // MARK: CRUD
     func addMemberForMe(roomID: String) -> Promise<Void> {
-        return Promise<Void>(in: .main) { [weak self] resolve, reject, _ in
+        return Promise<Void>(in: .main) { resolve, reject, _ in
             guard let uid: String = Auth.auth().currentUser?.uid else {
                 reject(FirebaseError.unAuthError)
                 return

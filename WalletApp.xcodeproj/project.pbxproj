@@ -74,6 +74,7 @@
 		06AFD2252754E1B3000E93A2 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2242754E1B3000E93A2 /* RoomModel.swift */; };
 		06AFD22727550FBD000E93A2 /* LocalKeyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD22627550FBD000E93A2 /* LocalKeyUtil.swift */; };
 		06AFD22A2755107F000E93A2 /* ParticipateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */; };
+		06AFD22D27552186000E93A2 /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD22C27552186000E93A2 /* PaymentModel.swift */; };
 		2367B330B83681DF1B6DE597 /* Pods_WalletApp_WalletAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED33ED954CE75260BA1F453 /* Pods_WalletApp_WalletAppUITests.framework */; };
 		24A73928F01BEE10929DCC10 /* Pods_WalletAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -156,6 +157,7 @@
 		06AFD2242754E1B3000E93A2 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		06AFD22627550FBD000E93A2 /* LocalKeyUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyUtil.swift; sourceTree = "<group>"; };
 		06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateRoomModel.swift; sourceTree = "<group>"; };
+		06AFD22C27552186000E93A2 /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
 		197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B783BEF5A5C00539647A9A1 /* Pods-WalletAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WalletAppTests/Pods-WalletAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F106ABEB6DF41A0CE1B9318 /* Pods-WalletApp-WalletAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletApp-WalletAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WalletApp-WalletAppUITests/Pods-WalletApp-WalletAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				06AFD22827551069000E93A2 /* ParticipateRoom */,
 				06AFD2122754B2F9000E93A2 /* User */,
 				06A5E3CF274F9EA100F9B31C /* Wallet */,
+				06AFD22B27552179000E93A2 /* Payment */,
 				06A5E3E72752156100F9B31C /* Member */,
 				06AFD2232754E1A2000E93A2 /* Room */,
 				06AFD2202754E132000E93A2 /* Setting */,
@@ -466,6 +469,14 @@
 				06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */,
 			);
 			path = ParticipateRoom;
+			sourceTree = "<group>";
+		};
+		06AFD22B27552179000E93A2 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				06AFD22C27552186000E93A2 /* PaymentModel.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		6CCC20D338DB6B77D6B6C3F3 /* Pods */ = {
@@ -777,6 +788,7 @@
 				06AFD2112754ADE8000E93A2 /* FirebaseConstants.swift in Sources */,
 				06A5E3D1274FA26C00F9B31C /* WalletModel.swift in Sources */,
 				06A5E3B1274F1C2900F9B31C /* StoryboardScenes.swift in Sources */,
+				06AFD22D27552186000E93A2 /* PaymentModel.swift in Sources */,
 				06A5E3AF274F1C2900F9B31C /* Strings.swift in Sources */,
 				06A5E3E52752154C00F9B31C /* MemberTableViewCell.swift in Sources */,
 				06A5E3D3274FA44E00F9B31C /* WalletViewModel.swift in Sources */,

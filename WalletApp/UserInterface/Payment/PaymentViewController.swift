@@ -73,6 +73,8 @@ class PaymentViewController: UIViewController {
     
     private func bind() {
         viewModel.output().price
+            .filter { $0 != nil }
+            .unwrap()
             .map { "¥\($0.numberForComma())" }
             .bind(to: priceTextField.rx.text)
             .disposed(by: disposeBag)
@@ -88,6 +90,13 @@ class PaymentViewController: UIViewController {
         viewModel.output().walletType
             .bind(to: Binder(self) { me, type in
                 me.configGradient(type: type)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.output().isSuccsess
+            .filter { $0 == true }
+            .bind(to: Binder(self) { me, _ in
+                me.priceTextField.text = ""
             })
             .disposed(by: disposeBag)
     }
