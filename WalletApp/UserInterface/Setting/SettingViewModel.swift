@@ -61,7 +61,9 @@ class SettingViewModel {
             isNextPage: isNextPageSubject.asObservable()
         )
         
-        configSettingItem()
+        if _input.settingType.value == .update {
+            configSettingItem()
+        }
         bind()
     }
     
