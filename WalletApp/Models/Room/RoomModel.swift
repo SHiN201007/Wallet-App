@@ -65,7 +65,34 @@ class RoomModel {
     // update room setting
     func updateRoomSetting(id: String, item: SettingModel.UpperItem) -> Promise<Void> {
         return Promise<Void>(in: .main) { resolve, reject, _ in
-            
+            let roomRef = FirebaseConstants.rooms.document(id: id)
+            Document<Rooms.rooms>.get(documentReference: roomRef) { room, error in
+                if let getError = error {
+                    print(getError)
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                room?.data = Rooms.rooms(
+                    foodUpper: item.foodPrice,
+                    lifeUpper: item.lifePrice,
+                    entertainmentUpper: item.entertainmentPrice,
+                    studyUpper: item.studyPrice,
+                    trainUpper: item.trainPrice,
+                    otherUpper: item.otherPrice
+                )
+                
+                room?.update { error in
+                    if let updateError = error {
+                        print(updateError)
+                        reject(FirebaseError.unUpdateError)
+                        return
+                    }
+                    resolve(())
+                }
+            }
         }
     }
+    
+    
 }

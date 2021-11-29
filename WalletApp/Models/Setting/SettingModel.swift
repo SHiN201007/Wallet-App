@@ -42,6 +42,7 @@ class SettingModel {
         let roomModel = RoomModel()
         return Promise<Void>(in: .main) { resolve, reject, _ in
             userModel.getMainRoomID().then { mainRoomID in
+                print("roomID", mainRoomID)
                 roomModel.updateRoomSetting(
                     id: mainRoomID,
                     item: upperItem

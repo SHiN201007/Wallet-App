@@ -122,10 +122,10 @@ class UserModel {
                 user?.data = data
                 user?.data?.mainRoomID = roomID
                 
-                user?.save { error in
-                    if let saveError = error {
-                        print(saveError)
-                        reject(FirebaseError.unSaveError)
+                user?.update { error in
+                    if let updateError = error {
+                        print(updateError)
+                        reject(FirebaseError.unUpdateError)
                         return
                     }
                     resolve(())

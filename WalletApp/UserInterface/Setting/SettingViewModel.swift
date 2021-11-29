@@ -8,6 +8,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Hydra
+import KRProgressHUD
 
 class SettingViewModel {
     
@@ -125,28 +127,28 @@ class SettingViewModel {
     }
     
     private func registSetting() {
-        
+        KRProgressHUD.show(withMessage: "設定を登録中...")
         model.registSetting(
             upperItem: configUpperItem()
         ).then { [weak self] _ in
-            
+            KRProgressHUD.dismiss()
             self?.isNextPageSubject.onNext(.regist)
         }.catch { error in
             print(error.localizedDescription)
-            
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
         }
     }
     
     private func updateSetting() {
-        
+        KRProgressHUD.show(withMessage: "設定を更新中...")
         model.updateSetting(
             upperItem: configUpperItem()
         ).then { [weak self] _ in
-            
+            KRProgressHUD.showMessage("限度額を更新しました🎉")
             self?.isNextPageSubject.onNext(.update)
         }.catch { error in
             print(error.localizedDescription)
-            
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
         }
     }
     
