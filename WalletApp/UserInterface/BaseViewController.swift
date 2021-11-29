@@ -20,9 +20,9 @@ class BaseViewController: UIViewController {
             // already logined
         }else {
             // present start view
-            let startVC = StartViewController()
-            startVC.modalPresentationStyle = .fullScreen
-            present(startVC, animated: true, completion: nil)
+            let navController = WalletNavigationViewController(rootViewController: StartViewController())
+            navController.modalPresentationStyle = .fullScreen
+            present(navController, animated: true, completion: nil)
         }
     }
     

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RxDataSources
 
-enum Gender {
+enum Gender: String {
     case man
     case woman
     case other

@@ -29,6 +29,7 @@ class StartViewController: UIViewController {
     }
     
     private func configView() {
+        title = "使い方"
         startButton.layer.cornerRadius = 10.0
         startButton.configGradientColor(width: self.view.bounds.width - 128, height: 60, colors: .all)
         startButton.configShadow()
