@@ -63,6 +63,10 @@
 		06AFD203275491E8000E93A2 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06AFD201275491E8000E93A2 /* StartViewController.xib */; };
 		06AFD20527549249000E93A2 /* WalletNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */; };
 		06AFD2082754990E000E93A2 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2072754990E000E93A2 /* StartViewModel.swift */; };
+		06AFD20A2754A429000E93A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06AFD2092754A429000E93A2 /* GoogleService-Info.plist */; };
+		06AFD20D2754A9CE000E93A2 /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD20C2754A9CE000E93A2 /* FirebaseModel.swift */; };
+		06AFD20F2754ADA9000E93A2 /* FirebaseCollections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD20E2754ADA9000E93A2 /* FirebaseCollections.swift */; };
+		06AFD2112754ADE8000E93A2 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2102754ADE8000E93A2 /* FirebaseConstants.swift */; };
 		2367B330B83681DF1B6DE597 /* Pods_WalletApp_WalletAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED33ED954CE75260BA1F453 /* Pods_WalletApp_WalletAppUITests.framework */; };
 		24A73928F01BEE10929DCC10 /* Pods_WalletAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +138,10 @@
 		06AFD201275491E8000E93A2 /* StartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
 		06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNavigationViewController.swift; sourceTree = "<group>"; };
 		06AFD2072754990E000E93A2 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
+		06AFD2092754A429000E93A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		06AFD20C2754A9CE000E93A2 /* FirebaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		06AFD20E2754ADA9000E93A2 /* FirebaseCollections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollections.swift; sourceTree = "<group>"; };
+		06AFD2102754ADE8000E93A2 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
 		197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B783BEF5A5C00539647A9A1 /* Pods-WalletAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WalletAppTests/Pods-WalletAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F106ABEB6DF41A0CE1B9318 /* Pods-WalletApp-WalletAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletApp-WalletAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WalletApp-WalletAppUITests/Pods-WalletApp-WalletAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +216,7 @@
 				06A5E3C4274F987300F9B31C /* Views */,
 				06A5E36E274F014300F9B31C /* LaunchScreen.storyboard */,
 				06A5E371274F014300F9B31C /* Info.plist */,
+				06AFD2092754A429000E93A2 /* GoogleService-Info.plist */,
 			);
 			path = WalletApp;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 		06A5E3CC274F9E8B00F9B31C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				06AFD20B2754A43E000E93A2 /* Firebase */,
 				06A5E3CF274F9EA100F9B31C /* Wallet */,
 				06A5E3E72752156100F9B31C /* Member */,
 			);
@@ -393,6 +403,16 @@
 				06AFD20427549249000E93A2 /* WalletNavigationViewController.swift */,
 			);
 			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		06AFD20B2754A43E000E93A2 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				06AFD20C2754A9CE000E93A2 /* FirebaseModel.swift */,
+				06AFD20E2754ADA9000E93A2 /* FirebaseCollections.swift */,
+				06AFD2102754ADE8000E93A2 /* FirebaseConstants.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		6CCC20D338DB6B77D6B6C3F3 /* Pods */ = {
@@ -536,6 +556,7 @@
 				06A5E3BD274F2A2000F9B31C /* MypageViewController.xib in Resources */,
 				06A5E370274F014300F9B31C /* LaunchScreen.storyboard in Resources */,
 				06A5E39D274F141300F9B31C /* Colors.xcassets in Resources */,
+				06AFD20A2754A429000E93A2 /* GoogleService-Info.plist in Resources */,
 				06A5E3C9274F989B00F9B31C /* WalletTableViewCell.xib in Resources */,
 				06AFD203275491E8000E93A2 /* StartViewController.xib in Resources */,
 				06A5E39B274F13D100F9B31C /* Images.xcassets in Resources */,
@@ -694,7 +715,9 @@
 				06A5E3CB274F9DB200F9B31C /* CustomViewUtil.swift in Sources */,
 				06A5E3D72750B2BE00F9B31C /* MypageViewModel.swift in Sources */,
 				06A5E366274F014200F9B31C /* SceneDelegate.swift in Sources */,
+				06AFD20D2754A9CE000E93A2 /* FirebaseModel.swift in Sources */,
 				06A5E3C3274F3A3300F9B31C /* AnyObject+Then.swift in Sources */,
+				06AFD2112754ADE8000E93A2 /* FirebaseConstants.swift in Sources */,
 				06A5E3D1274FA26C00F9B31C /* WalletModel.swift in Sources */,
 				06A5E3B1274F1C2900F9B31C /* StoryboardScenes.swift in Sources */,
 				06A5E3AF274F1C2900F9B31C /* Strings.swift in Sources */,
@@ -709,6 +732,7 @@
 				06A5E3C8274F989B00F9B31C /* WalletTableViewCell.swift in Sources */,
 				06A5E3F92753220E00F9B31C /* SettingViewModel.swift in Sources */,
 				06AFD20527549249000E93A2 /* WalletNavigationViewController.swift in Sources */,
+				06AFD20F2754ADA9000E93A2 /* FirebaseCollections.swift in Sources */,
 				06AFD2082754990E000E93A2 /* StartViewModel.swift in Sources */,
 				06A5E3FB27548F6B00F9B31C /* BaseViewController.swift in Sources */,
 				06AFD202275491E8000E93A2 /* StartViewController.swift in Sources */,
