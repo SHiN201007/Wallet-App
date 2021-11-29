@@ -36,5 +36,6 @@ enum FirebaseConstants {
     enum SubCollections: String {
         case members
         case payments
+        case participateRooms
     }
 }

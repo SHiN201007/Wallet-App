@@ -17,10 +17,12 @@ class RoomModel {
         // participate user : member model
         let memberModel = MemberModel()
         let userModel = UserModel()
+        let participateRoomModel = ParticipateRoomModel()
         return Promise<Void>(in: .main) { [weak self] resolve, reject, _ in
             self?.createRoom(item: item).then { roomID in
                 all(
                     memberModel.addMemberForMe(roomID: roomID),
+                    participateRoomModel.addParticipateRoom(roomID: roomID),
                     userModel.updateMainRoom(roomID: roomID)
                 ).then { _ in
                     resolve(())

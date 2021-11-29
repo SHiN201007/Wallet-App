@@ -72,6 +72,8 @@
 		06AFD21F2754BB44000E93A2 /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD21E2754BB44000E93A2 /* ErrorExtension.swift */; };
 		06AFD2222754E142000E93A2 /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2212754E142000E93A2 /* SettingModel.swift */; };
 		06AFD2252754E1B3000E93A2 /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2242754E1B3000E93A2 /* RoomModel.swift */; };
+		06AFD22727550FBD000E93A2 /* LocalKeyUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD22627550FBD000E93A2 /* LocalKeyUtil.swift */; };
+		06AFD22A2755107F000E93A2 /* ParticipateRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */; };
 		2367B330B83681DF1B6DE597 /* Pods_WalletApp_WalletAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED33ED954CE75260BA1F453 /* Pods_WalletApp_WalletAppUITests.framework */; };
 		24A73928F01BEE10929DCC10 /* Pods_WalletAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -152,6 +154,8 @@
 		06AFD21E2754BB44000E93A2 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		06AFD2212754E142000E93A2 /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		06AFD2242754E1B3000E93A2 /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
+		06AFD22627550FBD000E93A2 /* LocalKeyUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalKeyUtil.swift; sourceTree = "<group>"; };
+		06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipateRoomModel.swift; sourceTree = "<group>"; };
 		197715010C7391E93B0BCB09 /* Pods_WalletAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B783BEF5A5C00539647A9A1 /* Pods-WalletAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WalletAppTests/Pods-WalletAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3F106ABEB6DF41A0CE1B9318 /* Pods-WalletApp-WalletAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletApp-WalletAppUITests.release.xcconfig"; path = "Target Support Files/Pods-WalletApp-WalletAppUITests/Pods-WalletApp-WalletAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +302,7 @@
 			children = (
 				06A5E3B3274F24A300F9B31C /* TabbarUtil.swift */,
 				06A5E3CA274F9DB200F9B31C /* CustomViewUtil.swift */,
+				06AFD22627550FBD000E93A2 /* LocalKeyUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				06AFD20B2754A43E000E93A2 /* Firebase */,
+				06AFD22827551069000E93A2 /* ParticipateRoom */,
 				06AFD2122754B2F9000E93A2 /* User */,
 				06A5E3CF274F9EA100F9B31C /* Wallet */,
 				06A5E3E72752156100F9B31C /* Member */,
@@ -452,6 +458,14 @@
 				06AFD2242754E1B3000E93A2 /* RoomModel.swift */,
 			);
 			path = Room;
+			sourceTree = "<group>";
+		};
+		06AFD22827551069000E93A2 /* ParticipateRoom */ = {
+			isa = PBXGroup;
+			children = (
+				06AFD2292755107F000E93A2 /* ParticipateRoomModel.swift */,
+			);
+			path = ParticipateRoom;
 			sourceTree = "<group>";
 		};
 		6CCC20D338DB6B77D6B6C3F3 /* Pods */ = {
@@ -753,6 +767,8 @@
 				06A5E3C1274F395700F9B31C /* UIViewExtension.swift in Sources */,
 				06A5E3CB274F9DB200F9B31C /* CustomViewUtil.swift in Sources */,
 				06A5E3D72750B2BE00F9B31C /* MypageViewModel.swift in Sources */,
+				06AFD22A2755107F000E93A2 /* ParticipateRoomModel.swift in Sources */,
+				06AFD22727550FBD000E93A2 /* LocalKeyUtil.swift in Sources */,
 				06AFD2222754E142000E93A2 /* SettingModel.swift in Sources */,
 				06A5E366274F014200F9B31C /* SceneDelegate.swift in Sources */,
 				06AFD21F2754BB44000E93A2 /* ErrorExtension.swift in Sources */,

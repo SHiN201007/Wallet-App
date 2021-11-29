@@ -28,7 +28,7 @@ class SettingModel {
         return Promise<Void>(in: .main) { resolve, reject, _ in
             roomModel.setupRoom(item: upperItem).then { _ in
                 // completion
-                UserDefaults.standard.setValue(true, forKey: "logined")
+                UserDefaults.standard.setValue(true, forKey: LocalKey.logined.rawValue)
                 resolve(())
             }.catch { error in
                 reject(error)

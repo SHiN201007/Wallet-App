@@ -16,7 +16,7 @@ class BaseViewController: UIViewController {
     }
     
     private func presentStartPageIfNeeded() {
-        if UserDefaults.standard.bool(forKey: "logined") {
+        if UserDefaults.standard.bool(forKey: LocalKey.logined.rawValue) {
             // already logined
         }else {
             // present start view
