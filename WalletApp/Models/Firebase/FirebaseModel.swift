@@ -9,15 +9,32 @@ import Foundation
 import Firebase
 import Ballcap
 
-class Users: Object {
+class Users: Object, DataRepresentable & HierarchicalStructurable {
     
     var data: users?
+    // SubCollection
+    var participateRooms: [ParticipateRooms] = []
     
     struct users: Modelable & Codable {
         var userName: String = "ユーザー"
         var gender: String?
+        var mainRoomID: String?
     }
     
+    enum CollectionKeys: String {
+        case participateRooms
+    }
+    
+}
+
+
+class ParticipateRooms: Object {
+
+    var data: participateRooms?
+    
+    struct participateRooms: Modelable & Codable {
+        var roomID: String?
+    }
 }
 
 class Rooms: Object, DataRepresentable & HierarchicalStructurable {

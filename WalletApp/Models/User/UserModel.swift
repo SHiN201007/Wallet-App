@@ -55,8 +55,7 @@ class UserModel {
             let user: Document<Users.users> = Document(userRef)
             
             user.data = Users.users(
-                userName: "テストユーザー",
-                gender: nil
+                userName: "テストユーザー"
             )
             
             user.save { error in
@@ -66,6 +65,71 @@ class UserModel {
                     return
                 }
                 resolve(true)
+            }
+        }
+    }
+    
+    
+    // main roomID取得
+    func getMainRoomID() -> Promise<String> {
+        return Promise<String>(in: .main) { resolve, reject, _ in
+            guard let uid: String = Auth.auth().currentUser?.uid else {
+                reject(FirebaseError.unAuthError)
+                return
+            }
+            
+            let userRef = FirebaseConstants.users.document(id: uid)
+            Document<Users.users>.get(documentReference: userRef) { user, error in
+                if let getError = error {
+                    print(getError)
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                guard let data = user?.data,
+                      let mainRoomID = data.mainRoomID else {
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                resolve(mainRoomID)
+            }
+        }
+    }
+    
+    
+    // update main room
+    func updateMainRoom(roomID: String) -> Promise<Void> {
+        return Promise<Void>(in: .main) { resolve, reject, _ in
+            guard let uid: String = Auth.auth().currentUser?.uid else {
+                reject(FirebaseError.unAuthError)
+                return
+            }
+            
+            let userRef = FirebaseConstants.users.document(id: uid)
+            Document<Users.users>.get(documentReference: userRef) { user, error in
+                if let getError = error {
+                    print(getError)
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                guard let data = user?.data else {
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                user?.data = data
+                user?.data?.mainRoomID = roomID
+                
+                user?.save { error in
+                    if let saveError = error {
+                        print(saveError)
+                        reject(FirebaseError.unSaveError)
+                        return
+                    }
+                    resolve(())
+                }
             }
         }
     }

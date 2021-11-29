@@ -11,6 +11,7 @@ import RxCocoa
 
 class SettingViewModel {
     
+    private let model = SettingModel()
     private let disposeBag = DisposeBag()
     
     struct Input {
@@ -112,12 +113,41 @@ class SettingViewModel {
         return Int(price)
     }
     
+    private func configUpperItem() -> SettingModel.UpperItem {
+        return SettingModel.UpperItem(
+            foodPrice: foodPriceRelay.value,
+            lifePrice: lifePriceRelay.value,
+            entertainmentPrice: entertainmentPriceRelay.value,
+            studyPrice: studyPriceRelay.value,
+            trainPrice: trainPriceRelay.value,
+            otherPrice: otherPriceRelay.value
+        )
+    }
+    
     private func registSetting() {
-        isNextPageSubject.onNext(_input.settingType.value)
+        
+        model.registSetting(
+            upperItem: configUpperItem()
+        ).then { [weak self] _ in
+            
+            self?.isNextPageSubject.onNext(.regist)
+        }.catch { error in
+            print(error.localizedDescription)
+            
+        }
     }
     
     private func updateSetting() {
         
+        model.updateSetting(
+            upperItem: configUpperItem()
+        ).then { [weak self] _ in
+            
+            self?.isNextPageSubject.onNext(.update)
+        }.catch { error in
+            print(error.localizedDescription)
+            
+        }
     }
     
     // MARK: -- OUTPUT
