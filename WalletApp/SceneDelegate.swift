@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             )
             
             vc.tabBarItem = tabBarIcon
-            let navController = UINavigationController(rootViewController: vc)
+            let navController = WalletNavigationViewController(rootViewController: vc)
             viewControllers.append(navController)
         }
         

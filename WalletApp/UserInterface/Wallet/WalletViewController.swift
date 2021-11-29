@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class WalletViewController: UIViewController {
+class WalletViewController: BaseViewController {
     
     @IBOutlet weak var walletView: UIView!
     @IBOutlet weak var walletCornerTopView: UIView!
