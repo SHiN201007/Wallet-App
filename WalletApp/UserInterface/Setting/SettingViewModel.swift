@@ -61,7 +61,21 @@ class SettingViewModel {
             isNextPage: isNextPageSubject.asObservable()
         )
         
+        configSettingItem()
         bind()
+    }
+    
+    private func configSettingItem() {
+        model.fetchSettingData().then { [weak self] item in
+            self?.foodPriceRelay.accept(item.foodPrice)
+            self?.lifePriceRelay.accept(item.lifePrice)
+            self?.entertainmentPriceRelay.accept(item.entertainmentPrice)
+            self?.studyPriceRelay.accept(item.studyPrice)
+            self?.trainPriceRelay.accept(item.trainPrice)
+            self?.otherPriceRelay.accept(item.otherPrice)
+        }.catch { error in
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
+        }
     }
     
     private func bind() {

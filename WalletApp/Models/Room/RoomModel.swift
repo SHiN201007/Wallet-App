@@ -95,4 +95,31 @@ class RoomModel {
     }
     
     
+    // MARK: Get
+    func getSettingItems(id: String) -> Promise<SettingModel.UpperItem> {
+        return Promise<SettingModel.UpperItem>(in: .main) { resolve, reject, _ in
+            let roomRef = FirebaseConstants.rooms.document(id: id)
+            Document<Rooms.rooms>.get(documentReference: roomRef) { room, error in
+                if let getError = error {
+                    print(getError)
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                guard let data = room?.data else {
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                let item = SettingModel.UpperItem(
+                    foodPrice: data.foodUpper,
+                    lifePrice: data.lifeUpper,
+                    entertainmentPrice: data.entertainmentUpper,
+                    studyPrice: data.studyUpper,
+                    trainPrice: data.trainUpper,
+                    otherPrice: data.otherUpper
+                )
+                resolve(item)
+            }
+        }
+    }
 }

@@ -42,7 +42,6 @@ class SettingModel {
         let roomModel = RoomModel()
         return Promise<Void>(in: .main) { resolve, reject, _ in
             userModel.getMainRoomID().then { mainRoomID in
-                print("roomID", mainRoomID)
                 roomModel.updateRoomSetting(
                     id: mainRoomID,
                     item: upperItem
@@ -59,6 +58,22 @@ class SettingModel {
     }
     
     
-    
+    // MARK: fetch setting data
+    func fetchSettingData() -> Promise<UpperItem>  {
+        let userModel = UserModel()
+        let roomModel = RoomModel()
+        return Promise<UpperItem>(in: .main) { resolve, reject, _ in
+            userModel.getMainRoomID().then { mainRoomID in
+                roomModel.getSettingItems(id: mainRoomID).then { item in
+                    // completion
+                    resolve(item)
+                }.catch { error in
+                    reject(error)
+                }
+            }.catch { error in
+                reject(error)
+            }
+        }
+    }
     
 }
