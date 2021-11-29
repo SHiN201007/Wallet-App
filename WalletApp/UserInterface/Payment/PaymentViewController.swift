@@ -69,7 +69,7 @@ class PaymentViewController: UIViewController {
     
     private func bind() {
         viewModel.output().price
-            .map { "¥\($0)" }
+            .map { "¥\($0.numberForComma())" }
             .bind(to: priceTextField.rx.text)
             .disposed(by: disposeBag)
         
