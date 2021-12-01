@@ -31,12 +31,12 @@ class WalletModel {
     // sample data
     private func sampleWalletData() -> [SectionWallet] {
         return [
-            SectionWallet(items: [SectionWallet.Item(walletType: .food)]),
-            SectionWallet(items: [SectionWallet.Item(walletType: .life)]),
-            SectionWallet(items: [SectionWallet.Item(walletType: .entertainment)]),
-            SectionWallet(items: [SectionWallet.Item(walletType: .study)]),
-            SectionWallet(items: [SectionWallet.Item(walletType: .train)]),
-            SectionWallet(items: [SectionWallet.Item(walletType: .other)])
+            SectionWallet(items: [SectionWallet.Item(amount: 10000, walletType: .food)]),
+            SectionWallet(items: [SectionWallet.Item(amount: 12222, walletType: .life)]),
+            SectionWallet(items: [SectionWallet.Item(amount: 31111, walletType: .entertainment)]),
+            SectionWallet(items: [SectionWallet.Item(amount: 11111, walletType: .study)]),
+            SectionWallet(items: [SectionWallet.Item(amount: 91111, walletType: .train)]),
+            SectionWallet(items: [SectionWallet.Item(amount: 13111, walletType: .other)])
         ]
     }
     

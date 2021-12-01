@@ -64,4 +64,8 @@ class WalletViewModel {
         _output
     }
     
+    func reloadBalanceData() {
+        fetchWalletBalance()
+    }
+    
 }

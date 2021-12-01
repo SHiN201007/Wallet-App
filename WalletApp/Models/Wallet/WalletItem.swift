@@ -113,6 +113,7 @@ enum WalletType {
 }
 
 struct WalletItem {
+    var amount: Int
     var walletType: WalletType
 }
 

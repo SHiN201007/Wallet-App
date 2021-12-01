@@ -21,6 +21,8 @@ class WalletViewController: BaseViewController {
     @IBOutlet weak var balanceRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
+    private let refreshControl = UIRefreshControl()
+    
     private var viewModel: WalletViewModel!
     private let disposeBag = DisposeBag()
     
@@ -33,7 +35,7 @@ class WalletViewController: BaseViewController {
         // layout
         if let width = self?.view.bounds.width {
             cell.configView(width: width - 40, type: item.walletType)
-            cell.configType(type: item.walletType)
+            cell.configType(amount: item.amount, type: item.walletType)
         }
         
         return cell
@@ -44,6 +46,11 @@ class WalletViewController: BaseViewController {
         configTableView()
         configViewModel()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadBalanceData()
     }
     
     override func viewWillLayoutSubviews() {
@@ -72,6 +79,7 @@ class WalletViewController: BaseViewController {
         tableView.tableFooterView = UIView(frame: .zero) // 空白cellの線　削除
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView.refreshControl = refreshControl
     }
     
     private func configViewModel() {
@@ -95,6 +103,12 @@ class WalletViewController: BaseViewController {
                 me.tableView.deselectRow(at: indexPath, animated: true)
             })
             .disposed(by: disposeBag)
+        
+//        refreshControl.rx.controlEvent(.valueChanged)
+//            .bind(to: Binder(self) { me, _ in
+//
+//            })
+//            .disposed(by: disposeBag)
     }
     
 }
