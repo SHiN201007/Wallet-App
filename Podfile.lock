@@ -226,6 +226,7 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
   - Differentiator (5.0.0)
+  - FFPopup (1.1.5)
   - Firebase (7.6.0):
     - Firebase/Core (= 7.6.0)
   - Firebase/Analytics (7.6.0):
@@ -406,6 +407,7 @@ PODS:
 DEPENDENCIES:
   - AlamofireImage
   - Ballcap
+  - FFPopup
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -434,6 +436,7 @@ SPEC REPOS:
     - Ballcap
     - BoringSSL-GRPC
     - Differentiator
+    - FFPopup
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -478,6 +481,7 @@ SPEC CHECKSUMS:
   Ballcap: 07c7e12a9b8d4d0f3e495a88e39b20949bc0c30c
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  FFPopup: a208dcee8db3e54ec4a88fcd6481f6f5d85b7a83
   Firebase: e1e089d9aac215a52442583f818ab61de3c4581b
   FirebaseAnalytics: 9f8f4feab1f3fddf4e4515f8f022fe6aa9e51043
   FirebaseAuth: 0a1df88dc32569db509e6269c3e4bf2a168e8ae8
@@ -515,6 +519,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftGen: 67860cc7c3cfc2ed25b9b74cfd55495fc89f9108
 
-PODFILE CHECKSUM: ecbab0e0c2ebe3644d2c9b0029b7053798d87654
+PODFILE CHECKSUM: b0be8f0a7652b9f23abbd0d5770780420a99eee8
 
 COCOAPODS: 1.11.2
