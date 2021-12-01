@@ -79,7 +79,9 @@ class MypageViewController: UIViewController {
         // setting
         settingButton.rx.tap
             .bind(to: Binder(self) { me, _ in
-                me.navigationController?.pushViewController(SettingViewController(), animated: true)
+                let settingVC = SettingViewController()
+                settingVC.settingTypeRelay.accept(.update)
+                me.navigationController?.pushViewController(settingVC, animated: true)
             })
             .disposed(by: disposeBag)
         

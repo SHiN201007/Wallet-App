@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import Ballcap
 import Hydra
 
 class MemberModel {
@@ -32,5 +34,33 @@ class MemberModel {
             SectionMember(items: [SectionMember.Item(userName: "きょうか", gender: .woman)]),
             SectionMember(items: [SectionMember.Item(userName: nil, gender: nil)])
         ]
+    }
+    
+    
+    // MARK: CRUD
+    func addMemberForMe(roomID: String) -> Promise<Void> {
+        return Promise<Void>(in: .main) { resolve, reject, _ in
+            guard let uid: String = Auth.auth().currentUser?.uid else {
+                reject(FirebaseError.unAuthError)
+                return
+            }
+            let memberRef = FirebaseConstants.rooms
+                .subCollections(parentDocument: roomID, subCollection: .members)
+            
+            let member: Document<Members.members> = Document(collectionReference: memberRef)
+            
+            member.data = Members.members(
+                memberID: uid
+            )
+            
+            member.save { error in
+                if let saveError = error {
+                    print(saveError)
+                    reject(FirebaseError.unSaveError)
+                    return
+                }
+                resolve(())
+            }
+        }
     }
 }

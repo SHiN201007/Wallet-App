@@ -43,9 +43,11 @@ class WalletTableViewCell: UITableViewCell {
         genreView.layer.cornerRadius = 10.0
     }
     
-    func configType(type: WalletType) {
+    func configType(amount: Int, type: WalletType) {
         genreImageView.image = type.image
         typeLabel.text = type.typeName
+        
+        priceLabel.text = "¥\(amount.numberForComma())"
     }
     
 }

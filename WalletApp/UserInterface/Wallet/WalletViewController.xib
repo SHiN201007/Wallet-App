@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletViewController" customModule="WalletApp" customModuleProvider="target">
             <connections>
+                <outlet property="balanceLabel" destination="YUA-ZC-Gnh" id="mzm-iL-Jcl"/>
                 <outlet property="balanceRightConstraint" destination="OVS-br-fxt" id="wjT-hK-aQN"/>
                 <outlet property="balanceSlideView" destination="t08-a9-xmA" id="9J7-id-CbZ"/>
                 <outlet property="balanceView" destination="NE9-1F-ox2" id="ZMy-7d-cEb"/>

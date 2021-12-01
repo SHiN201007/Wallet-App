@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import KRProgressHUD
 
 class WalletViewController: BaseViewController {
     
@@ -16,9 +17,12 @@ class WalletViewController: BaseViewController {
     @IBOutlet weak var walletCornerTopView: UIView!
     @IBOutlet weak var walletCornerBottomView: UIView!
     @IBOutlet weak var balanceView: UIView!
+    @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balanceSlideView: UIView!
     @IBOutlet weak var balanceRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    
+    private let refreshControl = UIRefreshControl()
     
     private var viewModel: WalletViewModel!
     private let disposeBag = DisposeBag()
@@ -32,7 +36,7 @@ class WalletViewController: BaseViewController {
         // layout
         if let width = self?.view.bounds.width {
             cell.configView(width: width - 40, type: item.walletType)
-            cell.configType(type: item.walletType)
+            cell.configType(amount: item.amount, type: item.walletType)
         }
         
         return cell
@@ -43,6 +47,13 @@ class WalletViewController: BaseViewController {
         configTableView()
         configViewModel()
         bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.reloadBalanceData().catch { error in
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -71,22 +82,38 @@ class WalletViewController: BaseViewController {
         tableView.tableFooterView = UIView(frame: .zero) // 空白cellの線　削除
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView.refreshControl = refreshControl
     }
     
     private func configViewModel() {
         viewModel = WalletViewModel()
-        // output
+    }
+    
+    private func bind() {
+        // balance
+        viewModel.output().balance
+            .map { "¥\($0.numberForComma())" }
+            .bind(to: balanceLabel.rx.text)
+            .disposed(by: disposeBag)
         
         // wallet items
         viewModel.output().walletItems
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-    }
-    
-    private func bind() {
+        
         tableView.rx.itemSelected
             .bind(to: Binder(self) { me, indexPath in
                 me.tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: Binder(self) { me, _ in
+                me.viewModel.reloadBalanceData().then { _ in
+                    me.refreshControl.endRefreshing()
+                }.catch { error in
+                    KRProgressHUD.showError(withMessage: error.showErrorDescription())
+                }
             })
             .disposed(by: disposeBag)
     }

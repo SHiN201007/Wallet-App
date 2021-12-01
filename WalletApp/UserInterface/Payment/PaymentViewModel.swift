@@ -9,9 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxSwiftExt
+import KRProgressHUD
 
 class PaymentViewModel {
     
+    private let model = PaymentModel()
     private let disposeBag = DisposeBag()
     
     struct Input {
@@ -26,7 +28,7 @@ class PaymentViewModel {
     }
     
     struct Output {
-        var price: Observable<Int>
+        var price: Observable<Int?>
         var typeImage: Observable<UIImage>
         var typeName: Observable<String>
         var walletType: Observable<WalletType>
@@ -40,13 +42,13 @@ class PaymentViewModel {
     private let typeImageRelay = BehaviorRelay<UIImage?>(value: WalletType.food.image)
     private let typeNameRelay = BehaviorRelay<String?>(value: WalletType.food.typeName)
     private let walletTypeRelay = BehaviorRelay<WalletType>(value: .food)
-    private let priceSubject = PublishSubject<Int>()
+    private let priceRelay = BehaviorRelay<Int?>(value: nil)
     private let isSuccsessSubject = PublishSubject<Bool>()
     
     init(trigger: Input) {
         _input = trigger
         _output = Output(
-            price: priceSubject.asObservable(),
+            price: priceRelay.asObservable(),
             typeImage: typeImageRelay.unwrap().asObservable(),
             typeName: typeNameRelay.unwrap().asObservable(),
             walletType: walletTypeRelay.asObservable(),
@@ -58,14 +60,14 @@ class PaymentViewModel {
     
     private func bind() {
         _input.priceText
-            .map { Int($0) }
+            .map { $0.convertPrice() }
             .unwrap()
-            .bind(to: priceSubject)
+            .bind(to: priceRelay)
             .disposed(by: disposeBag)
         
         _input.doneButtonTapped
             .bind(to: Binder(self) { me, _ in
-                
+                me.sendPaymentData()
             })
             .disposed(by: disposeBag)
         
@@ -107,6 +109,27 @@ class PaymentViewModel {
                 me.typeNameRelay.accept(type.typeName)
             })
             .disposed(by: disposeBag)
+    }
+
+    private func sendPaymentData() {
+        let price = priceRelay.value ?? 0
+        
+        if price > 0 {
+            let data = PaymentModel.PaymentData(
+                price: priceRelay.value ?? 0,
+                type: walletTypeRelay.value
+            )
+            
+            KRProgressHUD.show(withMessage: "送信中...")
+            model.sendPayment(data: data).then { [weak self] _ in
+                KRProgressHUD.showMessage("送信完了💰")
+                self?.isSuccsessSubject.onNext(true)
+            }.catch { error in
+                KRProgressHUD.showError(withMessage: error.showErrorDescription())
+            }
+        }else {
+            KRProgressHUD.showError(withMessage: "金額を入力してください。")
+        }
     }
     
     // MARK: -- OUTPUT
