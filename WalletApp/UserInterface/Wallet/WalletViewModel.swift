@@ -37,25 +37,29 @@ class WalletViewModel {
             balance: balanceRelay.asObservable(),
             walletItems: walletItemsRelay.asObservable()
         )
-        
-        // configure
-        fetchWalletBalance()
-        fetchWalletItems()
     }
     
-    private func fetchWalletBalance() {
-        model.fetchBalance().then { [weak self] balance in
-            self?.balanceRelay.accept(balance)
-        }.catch { error in
-            print(error.showErrorDescription())
+    private func fetchWalletBalance() -> Promise<Void> {
+        return Promise<Void>(in: .main) { [weak self] resolve, reject, _ in
+            self?.model.fetchBalance().then { balance in
+                self?.balanceRelay.accept(balance)
+                resolve(())
+            }.catch { error in
+                print(error.showErrorDescription())
+                reject(error)
+            }
         }
     }
     
-    private func fetchWalletItems() {
-        model.fetchWalletData().then { [weak self] items in
-            self?.walletItemsRelay.accept(items)
-        }.catch { error in
-            print("fetch wallet error", error)
+    private func fetchWalletItems() -> Promise<Void> {
+        return Promise<Void>(in: .main) { [weak self] resolve, reject, _ in
+            self?.model.fetchWalletData().then { items in
+                self?.walletItemsRelay.accept(items)
+                resolve(())
+            }.catch { error in
+                print("fetch wallet error", error)
+                reject(error)
+            }
         }
     }
     
@@ -64,8 +68,14 @@ class WalletViewModel {
         _output
     }
     
-    func reloadBalanceData() {
-        fetchWalletBalance()
+    func reloadBalanceData() -> Promise<Void> {
+        return Promise<Void>(in: .main) { resolve, reject, _ in
+            all(self.fetchWalletBalance(), self.fetchWalletItems()).then { _ in
+                resolve(())
+            }.catch { error in
+                reject(error)
+            }
+        }
     }
     
 }

@@ -77,8 +77,43 @@ class PaymentModel {
                 }
                 
                 resolve(total)
+                return
             }
+        }
+    }
+    
+    func fetchTypeOfPaymentTotal(roomID id: String, type: WalletType) -> Promise<Int> {
+        var total = 0
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            let paymentRef = FirebaseConstants.rooms
+                .subCollections(parentDocument: id, subCollection: .payments)
+            paymentRef
+                .whereField("paymentType", isEqualTo: type.typeName ?? "")
+                .getDocuments { snapshot, error in
+                    if let getPaymentsError = error {
+                        print(getPaymentsError)
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    
+                    guard let documents = snapshot?.documents else {
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
                 
+                    documents.forEach { snap in
+                        if let document = Document<Payments.payments>(snapshot: snap),
+                           let data = document.data {
+                            total += data.price ?? 0
+                        }else {
+                            reject(FirebaseError.connotDataError)
+                            return
+                        }
+                    }
+                    
+                    resolve(total)
+                    return
+            }
         }
     }
     

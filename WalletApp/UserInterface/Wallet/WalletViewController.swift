@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import KRProgressHUD
 
 class WalletViewController: BaseViewController {
     
@@ -50,7 +51,9 @@ class WalletViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.reloadBalanceData()
+        viewModel.reloadBalanceData().catch { error in
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -104,11 +107,15 @@ class WalletViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-//        refreshControl.rx.controlEvent(.valueChanged)
-//            .bind(to: Binder(self) { me, _ in
-//
-//            })
-//            .disposed(by: disposeBag)
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: Binder(self) { me, _ in
+                me.viewModel.reloadBalanceData().then { _ in
+                    me.refreshControl.endRefreshing()
+                }.catch { error in
+                    KRProgressHUD.showError(withMessage: error.showErrorDescription())
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
 }
