@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import Ballcap
 import Hydra
 
 class WalletModel {
@@ -36,5 +38,27 @@ class WalletModel {
             SectionWallet(items: [SectionWallet.Item(walletType: .train)]),
             SectionWallet(items: [SectionWallet.Item(walletType: .other)])
         ]
+    }
+    
+    // MARK: Balance
+    func fetchBalance() -> Promise<Int> {
+        let userModel = UserModel()
+        let roomModel = RoomModel()
+        let paymentModel = PaymentModel()
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            userModel.getMainRoomID().then { mainRoomID in
+                all(
+                    roomModel.getTotalPrice(roomID: mainRoomID),
+                    paymentModel.getPaymentTotal(roomID: mainRoomID)
+                ).then { results in
+                    let balance = results[0] - results[1]
+                    resolve(balance)
+                }.catch { error in
+                    reject(error)
+                }
+            }.catch { error in
+                reject(error)
+            }
+        }
     }
 }

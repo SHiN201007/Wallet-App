@@ -122,4 +122,30 @@ class RoomModel {
             }
         }
     }
+    
+    func getTotalPrice(roomID id: String) -> Promise<Int> {
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            let roomRef = FirebaseConstants.rooms.document(id: id)
+            Document<Rooms.rooms>.get(documentReference: roomRef) { room, error in
+                if let getError = error {
+                    print(getError)
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                guard let data = room?.data else {
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                var total = 0
+                total += data.foodUpper
+                total += data.lifeUpper
+                total += data.entertainmentUpper
+                total += data.studyUpper
+                total += data.trainUpper
+                total += data.otherUpper
+                resolve(total)
+            }
+        }
+    }
 }

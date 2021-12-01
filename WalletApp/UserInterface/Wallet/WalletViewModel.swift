@@ -21,6 +21,7 @@ class WalletViewModel {
 //    }
     
     struct Output {
+        var balance: Observable<Int>
         var walletItems: Observable<[SectionWallet]>
     }
     
@@ -28,15 +29,26 @@ class WalletViewModel {
     private var _output: WalletViewModel.Output!
     
     // parameter
+    private let balanceRelay = BehaviorRelay<Int>(value: 0)
     private let walletItemsRelay = BehaviorRelay<[SectionWallet]>(value: [])
     
     init() {
         _output = Output(
+            balance: balanceRelay.asObservable(),
             walletItems: walletItemsRelay.asObservable()
         )
         
         // configure
+        fetchWalletBalance()
         fetchWalletItems()
+    }
+    
+    private func fetchWalletBalance() {
+        model.fetchBalance().then { [weak self] balance in
+            self?.balanceRelay.accept(balance)
+        }.catch { error in
+            print(error.showErrorDescription())
+        }
     }
     
     private func fetchWalletItems() {

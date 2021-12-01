@@ -16,6 +16,7 @@ class WalletViewController: BaseViewController {
     @IBOutlet weak var walletCornerTopView: UIView!
     @IBOutlet weak var walletCornerBottomView: UIView!
     @IBOutlet weak var balanceView: UIView!
+    @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balanceSlideView: UIView!
     @IBOutlet weak var balanceRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
@@ -75,15 +76,20 @@ class WalletViewController: BaseViewController {
     
     private func configViewModel() {
         viewModel = WalletViewModel()
-        // output
+    }
+    
+    private func bind() {
+        // balance
+        viewModel.output().balance
+            .map { "¥\($0.numberForComma())" }
+            .bind(to: balanceLabel.rx.text)
+            .disposed(by: disposeBag)
         
         // wallet items
         viewModel.output().walletItems
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-    }
-    
-    private func bind() {
+        
         tableView.rx.itemSelected
             .bind(to: Binder(self) { me, indexPath in
                 me.tableView.deselectRow(at: indexPath, animated: true)
