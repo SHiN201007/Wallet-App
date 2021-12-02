@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import FFPopup
 
 class MypageViewController: UIViewController {
     
@@ -96,9 +97,23 @@ class MypageViewController: UIViewController {
                 let item = me.viewModel.output().memberItem.value[indexPath.section].items.first
                 if item?.userName == nil || item?.gender == nil {
                     print("invitaion")
+                    me.showAddMemberView()
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func showAddMemberView() {
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width - 40, height: 250)
+        let addMemberView = AddMemberView(frame: frame)
+        
+        let popup = FFPopup(contentView: addMemberView)
+        popup.do {
+            $0.showType = .growIn
+            $0.dismissType = .shrinkOut
+        }
+        let layout = FFPopupLayout(horizontal: .center, vertical: .center)
+        popup.show(layout: layout)
     }
 
 }
