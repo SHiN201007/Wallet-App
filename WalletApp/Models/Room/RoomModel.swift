@@ -12,6 +12,28 @@ import Hydra
 
 class RoomModel {
     
+    func joinParticipateRoom(shareCode: Int) -> Promise<Void> {
+        let userModel = UserModel()
+        let memberModel = MemberModel()
+        let participateRoomModel = ParticipateRoomModel()
+        return Promise<Void>(in: .main) { resolve, reject, _ in
+            self.searchRoomID(shareCode: shareCode).then { roomID in
+                all(
+                    memberModel.addMemberForMe(roomID: roomID),
+                    participateRoomModel.addParticipateRoom(roomID: roomID),
+                    userModel.updateMainRoom(roomID: roomID)
+                ).then { _ in
+                    UserDefaults.standard.setValue(true, forKey: LocalKey.logined.rawValue)
+                    resolve(())
+                }.catch { error in
+                    reject(error)
+                }
+            }.catch { error in
+                reject(error)
+            }
+        }
+    }
+    
     func setupRoom(item: SettingModel.UpperItem) -> Promise<Void> {
         // create room
         // participate user : member model
@@ -210,6 +232,29 @@ class RoomModel {
             }.catch { error in
                 reject(error)
             }
+        }
+    }
+    
+    private func searchRoomID(shareCode: Int) -> Promise<String> {
+        return Promise<String>(in: .main) { resolve, reject, _ in
+            let roomRef = FirebaseConstants.rooms.ref
+            roomRef.whereField("shareCode", isEqualTo: shareCode)
+                .getDocuments { snapshot, error in
+                    if let roomError = error {
+                        reject(roomError)
+                        return
+                    }
+                    guard let documents = snapshot?.documents,
+                          let data = documents.first else {
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    
+                    let roomID = data.documentID
+                    print("roomID:", roomID)
+                    resolve(roomID)
+                    return
+                }
         }
     }
 }

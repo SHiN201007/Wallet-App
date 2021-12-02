@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 import FFPopup
+import KRProgressHUD
 
 class MypageViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class MypageViewController: UIViewController {
     
     private var viewModel: MypageViewModel!
     private let disposeBag = DisposeBag()
+    
+    private let refreshControl = UIRefreshControl()
     
     private lazy var dataSource = RxTableViewSectionedReloadDataSource<SectionMember>(configureCell: configureCell)
     
@@ -69,6 +72,7 @@ class MypageViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: .zero) // 空白cellの線　削除
         tableView.separatorStyle = .none
         tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView.refreshControl = refreshControl
     }
     
     private func configViewModel() {
@@ -90,6 +94,7 @@ class MypageViewController: UIViewController {
         viewModel.output().memberItem.asObservable()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+        
         // selected items
         tableView.rx.itemSelected
             .bind(to: Binder(self) { me, indexPath in
@@ -98,6 +103,16 @@ class MypageViewController: UIViewController {
                 if item?.userName == nil || item?.gender == nil {
                     print("invitaion")
                     me.showAddMemberView()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind(to: Binder(self) { me, _ in
+                me.viewModel.fetchMemberItems().then { _ in
+                    me.refreshControl.endRefreshing()
+                }.catch { error in
+                    KRProgressHUD.showError(withMessage: error.showErrorDescription())
                 }
             })
             .disposed(by: disposeBag)

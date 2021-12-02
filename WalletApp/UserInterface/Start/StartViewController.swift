@@ -37,16 +37,17 @@ class StartViewController: UIViewController {
     
     private func configViewModel() {
         let input = StartViewModel.Input(
-            startButtonTapped: startButton.rx.tap.asObservable()
+            startButtonTapped: startButton.rx.tap.asObservable(),
+            promotionButtonTapped: promotionButton.rx.tap.asObservable()
         )
         viewModel = StartViewModel(trigger: input)
     }
     
     private func bind() {
         // promotion
-        promotionButton.rx.tap
+        viewModel.output().showSharePage
             .bind(to: Binder(self) { me, _ in
-                
+                me.navigationController?.pushViewController(ParticipateViewController(), animated: true)
             })
             .disposed(by: disposeBag)
         

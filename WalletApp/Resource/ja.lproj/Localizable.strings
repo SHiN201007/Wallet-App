@@ -11,6 +11,7 @@
 "title_payment" = "お支払い";
 "title_mypage" = "マイページ";
 "title_setting" = "設定";
+"title_participate" = "招待コードを入力";
 
 // MARK: WalletType Name
 "walletTypeName_food" = "食費";

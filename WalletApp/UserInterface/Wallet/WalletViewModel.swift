@@ -16,16 +16,11 @@ class WalletViewModel {
     private let model = WalletModel()
     private let disposeBag = DisposeBag()
     
-//    struct Input {
-//
-//    }
-    
     struct Output {
         var balance: Observable<Int>
         var walletItems: Observable<[SectionWallet]>
     }
     
-//    private var _input: WalletViewModel.Input!
     private var _output: WalletViewModel.Output!
     
     // parameter
