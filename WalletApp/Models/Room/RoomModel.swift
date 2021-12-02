@@ -183,6 +183,32 @@ class RoomModel {
                 total += data.trainUpper
                 total += data.otherUpper
                 resolve(total)
+                return
+            }
+        }
+    }
+    
+    func getRoomShareCode() -> Promise<Int> {
+        let userModel = UserModel()
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            userModel.getMainRoomID().then { mainRoomID in
+                let roomRef = FirebaseConstants.rooms.document(id: mainRoomID)
+                Document<Rooms.rooms>.get(documentReference: roomRef) { room, error in
+                    if let getError = error {
+                        print(getError)
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    guard let data = room?.data else {
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    
+                    resolve(data.shareCode)
+                    return
+                }
+            }.catch { error in
+                reject(error)
             }
         }
     }

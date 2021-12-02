@@ -8,6 +8,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Hydra
+import KRProgressHUD
 
 class AddMemberView: UIView {
     
@@ -31,7 +33,7 @@ class AddMemberView: UIView {
     
     private let shareTriggerSubject = PublishSubject<Bool>()
     private let cancelTriggerSubject = PublishSubject<Bool>()
-    private let shareItemRelay = BehaviorRelay<ShareItem>(value: ShareItem(userName: "userName", shareCode: 123456))
+    private let shareItemRelay = BehaviorRelay<ShareItem>(value: ShareItem(userName: "userName", shareCode: 0))
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -62,19 +64,35 @@ class AddMemberView: UIView {
     
     private func fetchMyNameData() {
         let userModel = UserModel()
+        let roomModel = RoomModel()
+        
+        KRProgressHUD.show()
         userModel.getMyUserData().then { [weak self] user in
-            self?.shareItemRelay.accept(
-                ShareItem(
-                    userName: user.userName,
-                    shareCode: 123456
+            roomModel.getRoomShareCode().then { shareCode in
+                self?.shareItemRelay.accept(
+                    ShareItem(
+                        userName: user.userName,
+                        shareCode: shareCode
+                    )
                 )
-            )
+                KRProgressHUD.dismiss()
+            }.catch { error in
+                print("share code error", error)
+                KRProgressHUD.showError(withMessage: error.showErrorDescription())
+            }
         }.catch { error in
             print("user data error", error)
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
         }
     }
     
     private func bind() {
+        shareItemRelay
+            .map { "\($0.shareCode)" }
+            .unwrap()
+            .bind(to: codeLabel.rx.text)
+            .disposed(by: disposeBag)
+        
         shareButton.rx.tap
             .map { true }
             .bind(to: shareTriggerSubject)
