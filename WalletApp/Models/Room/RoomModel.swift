@@ -36,28 +36,66 @@ class RoomModel {
     }
     
     private func createRoom(item: SettingModel.UpperItem) -> Promise<String> {
-        return Promise<String>(in: .main) { resolve, reject, _ in
+        return Promise<String>(in: .main) { [weak self] resolve, reject, _ in
             let roomRef = FirebaseConstants.rooms.ref
             let room: Document<Rooms.rooms> = Document(collectionReference: roomRef)
-            
-            room.data = Rooms.rooms(
-                foodUpper: item.foodPrice,
-                lifeUpper: item.lifePrice,
-                entertainmentUpper: item.entertainmentPrice,
-                studyUpper: item.studyPrice,
-                trainUpper: item.trainPrice,
-                otherUpper: item.otherPrice
-            )
-            
-            room.save { error in
-                if let saveError = error {
-                    print(saveError)
-                    reject(FirebaseError.unSaveError)
+            self?.createShareCode().then { shareCode in
+                room.data = Rooms.rooms(
+                    foodUpper: item.foodPrice,
+                    lifeUpper: item.lifePrice,
+                    entertainmentUpper: item.entertainmentPrice,
+                    studyUpper: item.studyPrice,
+                    trainUpper: item.trainPrice,
+                    otherUpper: item.otherPrice,
+                    shareCode: shareCode
+                )
+                
+                room.save { error in
+                    if let saveError = error {
+                        print(saveError)
+                        reject(FirebaseError.unSaveError)
+                        return
+                    }
+                    
+                    let roomID = room.documentReference.documentID
+                    resolve(roomID)
+                }
+            }.catch { error in
+                reject(error)
+            }
+        }
+    }
+    
+    private func createShareCode() -> Promise<Int> {
+        let shareModel = ShareCodeModel()
+        var createFlag = true
+        var codes: [Int] = []
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            let roomRef = FirebaseConstants.rooms.ref
+            roomRef.getDocuments { snapshot, error in
+                if let roomError = error {
+                    reject(roomError)
+                    return
+                }
+                guard let documents = snapshot?.documents else {
+                    reject(FirebaseError.connotDataError)
                     return
                 }
                 
-                let roomID = room.documentReference.documentID
-                resolve(roomID)
+                documents.forEach { snapshot in
+                    if let data = Document<Rooms.rooms>(snapshot: snapshot)?.data {
+                        codes.append(data.shareCode)
+                    }
+                }
+                
+                while createFlag {
+                    let shareCode = shareModel.createShareCode()
+                    if !codes.contains(shareCode) {
+                        createFlag = false
+                        resolve(shareCode)
+                        return
+                    }
+                }
             }
         }
     }
@@ -145,6 +183,32 @@ class RoomModel {
                 total += data.trainUpper
                 total += data.otherUpper
                 resolve(total)
+                return
+            }
+        }
+    }
+    
+    func getRoomShareCode() -> Promise<Int> {
+        let userModel = UserModel()
+        return Promise<Int>(in: .main) { resolve, reject, _ in
+            userModel.getMainRoomID().then { mainRoomID in
+                let roomRef = FirebaseConstants.rooms.document(id: mainRoomID)
+                Document<Rooms.rooms>.get(documentReference: roomRef) { room, error in
+                    if let getError = error {
+                        print(getError)
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    guard let data = room?.data else {
+                        reject(FirebaseError.connotDataError)
+                        return
+                    }
+                    
+                    resolve(data.shareCode)
+                    return
+                }
+            }.catch { error in
+                reject(error)
             }
         }
     }

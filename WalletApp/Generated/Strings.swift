@@ -12,6 +12,10 @@ import Foundation
 internal enum L10n {
   /// タップでメンバーを招待しよう！
   internal static let memberPlaceHolder = L10n.tr("Localizable", "member_placeHolder")
+  /// %@が新しいウォレットを作成しました。共有のウォレットを管理しよう！\n招待コード『%@』で参加できます！
+  internal static func memberShare(_ p1: Any, _ p2: Any) -> String {
+    return L10n.tr("Localizable", "member_share", String(describing: p1), String(describing: p2))
+  }
   /// マイページ
   internal static let titleMypage = L10n.tr("Localizable", "title_mypage")
   /// お支払い
