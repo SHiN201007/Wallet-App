@@ -51,6 +51,7 @@ class Rooms: Object, DataRepresentable & HierarchicalStructurable {
         var studyUpper: Int = 0
         var trainUpper: Int = 0
         var otherUpper: Int = 0
+        var shareCode: Int = 0
     }
     
     enum CollectionKeys: String {
