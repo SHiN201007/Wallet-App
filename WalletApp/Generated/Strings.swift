@@ -18,6 +18,8 @@ internal enum L10n {
   }
   /// マイページ
   internal static let titleMypage = L10n.tr("Localizable", "title_mypage")
+  /// 招待コードを入力
+  internal static let titleParticipate = L10n.tr("Localizable", "title_participate")
   /// お支払い
   internal static let titlePayment = L10n.tr("Localizable", "title_payment")
   /// 設定

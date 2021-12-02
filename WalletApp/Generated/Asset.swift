@@ -44,6 +44,7 @@ public enum Asset {
     public static let girl = ImageAsset(name: "girl")
     public static let grandmother = ImageAsset(name: "grandmother")
     public static let grandpa = ImageAsset(name: "grandpa")
+    public static let invite = ImageAsset(name: "invite")
     public static let life = ImageAsset(name: "life")
     public static let mother = ImageAsset(name: "mother")
     public static let mypage = ImageAsset(name: "mypage")

@@ -148,7 +148,7 @@ class SettingViewController: UIViewController {
         viewModel.output().isNextPage
             .filter { $0 == .regist }
             .bind(to: Binder(self) { me, type in
-                self.dismiss(animated: true, completion: nil)
+                me.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }

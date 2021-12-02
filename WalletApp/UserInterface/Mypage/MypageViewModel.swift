@@ -8,6 +8,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Hydra
+import KRProgressHUD
 
 class MypageViewModel {
     
@@ -33,15 +35,20 @@ class MypageViewModel {
             memberItem: memberItemsRelay
         )
         
-        // configure
-        fetchMemberItems()
+        fetchMemberItems().catch { error in
+            KRProgressHUD.showError(withMessage: error.showErrorDescription())
+        }
     }
     
-    private func fetchMemberItems() {
-        model.fetchMemberData().then { [weak self] members in
-            self?.memberItemsRelay.accept(members)
-        }.catch { error in
-            print("fetch member error", error)
+    func fetchMemberItems() -> Promise<Void> {
+        return Promise<Void>(in: .main) { [weak self] resolve, reject, _ in
+            self?.model.fetchMemberData().then { members in
+                self?.memberItemsRelay.accept(members)
+                resolve(())
+            }.catch { error in
+                print("fetch member error", error)
+                reject(error)
+            }
         }
     }
     
