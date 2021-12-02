@@ -104,9 +104,8 @@ class MypageViewController: UIViewController {
     }
     
     private func showAddMemberView() {
-        let frame = CGRect(x: 0, y: 0, width: view.bounds.width - 40, height: 250)
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width - 40, height: 200)
         let addMemberView = AddMemberView(frame: frame)
-        
         let popup = FFPopup(contentView: addMemberView)
         popup.do {
             $0.showType = .growIn
@@ -114,6 +113,23 @@ class MypageViewController: UIViewController {
         }
         let layout = FFPopupLayout(horizontal: .center, vertical: .center)
         popup.show(layout: layout)
+        
+        addMemberView.output().share
+            .map { _ in addMemberView.output().shareItem.value }
+            .bind(to: Binder(self) { me, shareItem in
+                let activeVC = UIActivityViewController(
+                    activityItems: [L10n.memberShare(shareItem.userName, shareItem.shareCode)],
+                    applicationActivities: nil
+                )
+                me.present(activeVC, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        addMemberView.output().cancel
+            .bind(to: Binder(self) { me, _ in
+                popup.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 
 }

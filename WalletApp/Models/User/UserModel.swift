@@ -135,6 +135,31 @@ class UserModel {
     }
     
     
+    func getMyUserData() -> Promise<Users.users> {
+        return Promise<Users.users>(in: .main) { resolve, reject, _ in
+            guard let uid = Auth.auth().currentUser?.uid else {
+                reject(FirebaseError.unAuthError)
+                return
+            }
+            let ref = FirebaseConstants.users.document(id: uid)
+            Document<Users.users>.get(documentReference: ref) { user, error in
+                if let userError = error {
+                    reject(userError)
+                    return
+                }
+                
+                guard let data = user?.data else {
+                    reject(FirebaseError.connotDataError)
+                    return
+                }
+                
+                resolve(data)
+                return
+            }
+        }
+    }
+    
+    
     func fetchUserData(userID id: String) -> Promise<Users.users> {
         return Promise<Users.users>(in: .main) { resolve, reject, _ in
             let ref = FirebaseConstants.users.document(id: id)
