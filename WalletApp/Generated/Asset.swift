@@ -23,9 +23,36 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 public enum Asset {
   public enum Colors {
     public static let backgroundColor = ColorAsset(name: "backgroundColor")
+    public static let blackColor = ColorAsset(name: "blackColor")
+    public static let blueBottomColor = ColorAsset(name: "blueBottomColor")
+    public static let blueTopColor = ColorAsset(name: "blueTopColor")
+    public static let greenBottomColor = ColorAsset(name: "greenBottomColor")
+    public static let greenTopColor = ColorAsset(name: "greenTopColor")
+    public static let navyColor = ColorAsset(name: "navyColor")
+    public static let placeHolderColor = ColorAsset(name: "placeHolderColor")
+    public static let purpleBottomColor = ColorAsset(name: "purpleBottomColor")
+    public static let purpleTopColor = ColorAsset(name: "purpleTopColor")
+    public static let redBottomColor = ColorAsset(name: "redBottomColor")
+    public static let redTopColor = ColorAsset(name: "redTopColor")
   }
   public enum Images {
-    public static let image = ImageAsset(name: "Image")
+    public static let couple = ImageAsset(name: "couple")
+    public static let entertainment = ImageAsset(name: "entertainment")
+    public static let father = ImageAsset(name: "father")
+    public static let food = ImageAsset(name: "food")
+    public static let friend = ImageAsset(name: "friend")
+    public static let girl = ImageAsset(name: "girl")
+    public static let grandmother = ImageAsset(name: "grandmother")
+    public static let grandpa = ImageAsset(name: "grandpa")
+    public static let invite = ImageAsset(name: "invite")
+    public static let life = ImageAsset(name: "life")
+    public static let mother = ImageAsset(name: "mother")
+    public static let mypage = ImageAsset(name: "mypage")
+    public static let other = ImageAsset(name: "other")
+    public static let payment = ImageAsset(name: "payment")
+    public static let study = ImageAsset(name: "study")
+    public static let train = ImageAsset(name: "train")
+    public static let wallet = ImageAsset(name: "wallet")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

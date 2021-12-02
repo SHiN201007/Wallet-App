@@ -6,4 +6,21 @@
   
 */
 
-"test" = "テスト";
+//MARK: Page Titile
+"title_wallet" = "ウォレット";
+"title_payment" = "お支払い";
+"title_mypage" = "マイページ";
+"title_setting" = "設定";
+"title_participate" = "招待コードを入力";
+
+// MARK: WalletType Name
+"walletTypeName_food" = "食費";
+"walletTypeName_life" = "生活費";
+"walletTypeName_entertainment" = "交際費";
+"walletTypeName_study" = "教育費";
+"walletTypeName_train" = "交通費";
+"walletTypeName_other" = "雑費";
+
+// MARK: Member
+"member_placeHolder" = "タップでメンバーを招待しよう！";
+"member_share" = "%@が新しいウォレットを作成しました。共有のウォレットを管理しよう！\n招待コード『%@』で参加できます！";
