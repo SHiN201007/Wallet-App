@@ -18,8 +18,8 @@
                 <outlet property="otherButton" destination="zxD-y1-e8L" id="5SK-Ex-crZ"/>
                 <outlet property="paymentView" destination="EWY-vr-1TR" id="aON-VL-JQn"/>
                 <outlet property="priceTextField" destination="umY-aD-iEE" id="V5d-dX-SM6"/>
-                <outlet property="studyButton" destination="JiL-Li-cEX" id="BWR-hl-Z4x"/>
-                <outlet property="trainButton" destination="S0o-kA-nI2" id="LhM-tB-5E2"/>
+                <outlet property="studyButton" destination="S0o-kA-nI2" id="kuk-Pl-81Y"/>
+                <outlet property="trainButton" destination="JiL-Li-cEX" id="TdP-Tx-u2Y"/>
                 <outlet property="typeImageView" destination="fwp-5m-fHA" id="rAE-Tr-ApP"/>
                 <outlet property="typeLabel" destination="lMC-tz-Ky7" id="eW7-xt-pX7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
